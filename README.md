@@ -1,18 +1,11 @@
-<p align='center'>
-  <img src='https://user-images.githubusercontent.com/11247099/111864893-a457fd00-899e-11eb-9f05-f4b88987541d.png' alt='Vitesse - Opinionated Vite Starter Template' width='600'/>
-</p>
+# Vue Component Library Starter
 
-<p align='center'>
-Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
-</p>
+Based on [daotl/vitesse](https://github.com/daotl/vitesse) and [Storybook](https://storybook.js.org/) with [storybook-builder-vite](https://github.com/eirslett/storybook-builder-vite/).
 
-<br>
-
-<p align='center'>
-<a href="https://vitesse.netlify.app/">Live Demo</a>
-</p>
-
-<br>
+Run Storybook:
+```shell
+npm run storybook
+```
 
 ## Features
 

@@ -1,4 +1,5 @@
-/* eslint-disable no-duplicate-imports */
+/* eslint-disable no-duplicate-imports,import/no-duplicates */
+
 // declare interface Window {
 //   // extend the window
 // }
@@ -12,7 +13,8 @@ declare module '*.md' {
 }
 
 declare module '*.vue' {
-  import Vue from 'vue'
+  import type { ComponentOptions } from 'vue'
 
-  export default Vue
+  const component: ComponentOptions
+  export default component
 }
