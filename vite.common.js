@@ -11,6 +11,7 @@ const AutoImport = require('unplugin-auto-import/vite')
 const IconsResolver = require('unplugin-icons/resolver')
 const Icons = require('unplugin-icons/vite')
 const Components = require('unplugin-vue-components/vite')
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 const Inspect = require('vite-plugin-inspect').default
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
@@ -37,6 +38,8 @@ exports.commonPlugins = [
       '@vueuse/core',
       'vitest',
     ],
+    // auto import Element Plus functions
+    resolvers: [ElementPlusResolver()],
     dts: 'src/types/auto-imports.d.ts',
   }),
 
@@ -56,6 +59,8 @@ exports.commonPlugins = [
         prefix: 'i',
         // enabledCollections: ['carbon'],
       }),
+      // auto import Element Plus components with styles
+      ElementPlusResolver(),
     ],
 
     dts: 'src/types/components.d.ts',
@@ -64,6 +69,7 @@ exports.commonPlugins = [
   // https://github.com/antfu/unplugin-icons
   Icons({
     autoInstall: true,
+    compiler: 'vue3',
   }),
 
   // https://github.com/antfu/vite-plugin-windicss

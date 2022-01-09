@@ -13,3 +13,9 @@ const { count, inc, dec } = useCounter(props.initial)
     <button class="dec" @click="dec()">-</button>
   </div>
 </template>
+
+<style scoped lang="scss">
+div {
+  color: red;
+}
+</style>
