@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-dts'
 import Pages from 'vite-plugin-pages'
+import Layouts from 'vite-plugin-vue-layouts'
 
 import { commonConfig, commonPlugins } from './vite.common'
 
@@ -19,7 +20,11 @@ export default defineConfig({
       extensions: ['vue', 'md'],
     }),
 
-    dts({ insertTypesEntry: true }),
+    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+    Layouts(),
+
+    // https://github.com/alloc/vite-dts
+    dts(),
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ...commonPlugins,

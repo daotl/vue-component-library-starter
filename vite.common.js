@@ -14,7 +14,6 @@ const Components = require('unplugin-vue-components/vite')
 const Inspect = require('vite-plugin-inspect').default
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
-const Layouts = require('vite-plugin-vue-layouts').default
 const WindiCSS = require('vite-plugin-windicss').default
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
@@ -28,9 +27,6 @@ exports.commonConfig = {
 }
 
 exports.commonPlugins = [
-  // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-  Layouts(),
-
   // https://github.com/antfu/unplugin-auto-import
   AutoImport({
     imports: [
@@ -57,8 +53,8 @@ exports.commonPlugins = [
       // auto import icons
       // https://github.com/antfu/unplugin-icons
       IconsResolver({
-        componentPrefix: '',
-        // enabledCollections: ['carbon']
+        prefix: 'i',
+        // enabledCollections: ['carbon'],
       }),
     ],
 
