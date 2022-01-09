@@ -1,10 +1,26 @@
 {
-  "private": true,
+  "name": "@daotl/vue-components",
+  "version": "0.0.0-alpha.0",
   "prettier": "@daotl/prettier-config",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/vue-components.umd.js",
+  "module": "./dist/vue-components.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-components.es.js",
+      "require": "./dist/vue-components.umd.js"
+    }
+  },
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build": "vite-ssg build",
+    "build": "vite build",
+    "pub": "npm run lint && npm run build && npm publish --access public",
+    "build-demo": "vite-ssg build",
     "dev": "vite --port 3333 --open",
     "lint": "npm run eslint && npm run stylelint",
     "lint:fix": "npm run eslint:fix && npm run stylelint:fix",
@@ -75,6 +91,7 @@
     "unplugin-icons": "^0.13.0",
     "unplugin-vue-components": "^0.17.11",
     "vite": "^2.7.6",
+    "vite-dts": "^1.0.4",
     "vite-plugin-inspect": "^0.3.11",
     "vite-plugin-md": "^0.11.7",
     "vite-plugin-pages": "^0.19.7",

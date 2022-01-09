@@ -1,5 +1,7 @@
 import Vue from '@vitejs/plugin-vue'
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import dts from 'vite-dts'
 import Pages from 'vite-plugin-pages'
 
 import { commonConfig, commonPlugins } from './vite.common'
@@ -16,6 +18,8 @@ export default defineConfig({
     Pages({
       extensions: ['vue', 'md'],
     }),
+
+    dts({ insertTypesEntry: true }),
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ...commonPlugins,
@@ -45,5 +49,29 @@ export default defineConfig({
     deps: {
       inline: ['@vue', '@vueuse', 'vue-demi'],
     },
+  },
+
+  build: {
+    lib: {
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'vue-components',
+    },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        // Specifies id: variableName pairs necessary for external imports in umd/iife bundles.
+        globals: {
+          vue: 'Vue',
+        },
+        // Since we publish our ./src folder, there's no point
+        // in bloating sourcemaps with another copy of it.
+        sourcemapExcludeSources: true,
+      },
+    },
+    sourcemap: true,
+    // Reduce bloat from legacy polyfills.
+    target: 'esnext',
+    // Leave minification up to applications.
+    minify: false,
   },
 })

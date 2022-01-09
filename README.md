@@ -2,10 +2,43 @@
 
 Based on [daotl/vitesse](https://github.com/daotl/vitesse) and [Storybook](https://storybook.js.org/) with [storybook-builder-vite](https://github.com/eirslett/storybook-builder-vite/).
 
-Run Storybook:
-```shell
+## Usage
+
+### Development
+
+Just run and visit http://localhost:3333
+
+```bash
+npm dev
+```
+
+To run Storybook:
+```bash
 npm run storybook
 ```
+
+To build storybook site:
+```bash
+npm run build-storybook
+```
+
+### Build / Publish the component library
+
+```bash
+npm run build
+```
+
+```bash
+npm run pub
+```
+
+### Build the demo app
+
+```bash
+pnpm build-demo
+```
+
+And you will see the generated file in `dist` that ready to be served.
 
 ## Features
 
@@ -147,30 +180,6 @@ When you use this template, try follow the checklist to update your info properl
 - [ ] Clean up the READMEs and remove routes
 
 And, enjoy :)
-
-## Usage
-
-### Development
-
-Just run and visit http://localhost:3333
-
-```bash
-pnpm dev
-```
-
-### Build
-
-To build the App, run
-
-```bash
-pnpm build
-```
-
-And you will see the generated file in `dist` that ready to be served.
-
-### Deploy on Netlify
-
-Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along the way, and your App will be live in a minute.
 
 ## Why
 

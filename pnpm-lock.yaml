@@ -49,6 +49,7 @@ specifiers:
   unplugin-icons: ^0.13.0
   unplugin-vue-components: ^0.17.11
   vite: ^2.7.6
+  vite-dts: ^1.0.4
   vite-plugin-inspect: ^0.3.11
   vite-plugin-md: ^0.11.7
   vite-plugin-pages: ^0.19.7
@@ -120,6 +121,7 @@ devDependencies:
   unplugin-icons: 0.13.0_f810c5f3495eca0c2ad1c5b1cd05b30b
   unplugin-vue-components: 0.17.11_b5aa1ec11de6a0d78e6787e68ca2873a
   vite: 2.7.6
+  vite-dts: 1.0.4_vite@2.7.6
   vite-plugin-inspect: 0.3.11_vite@2.7.6
   vite-plugin-md: 0.11.7_vite@2.7.6
   vite-plugin-pages: 0.19.7_871f6ee9e44a1b674bb015d29ae57637
@@ -174,13 +176,6 @@ packages:
     resolution: {integrity: sha512-vG6SvB6oYEhvgisZNFRmRCUkLz11c7rp+tbNTynGqc6mS1d5ATd/sGyV6W0KZZnXRKMTzZDRgQT3Ou9jhpAfUg==}
     dependencies:
       '@babel/highlight': 7.16.7
-    dev: true
-
-  /@babel/code-frame/7.14.5:
-    resolution: {integrity: sha512-9pzDqyc6OLDaqe+zbACgFkb6fKMNG6CObKpnYXChRsvYGyEdc7CA2BaqeOM+vOtCS5ndmJicPJhKAwYRI6UfFw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/highlight': 7.14.5
     dev: true
 
   /@babel/code-frame/7.16.7:
@@ -619,15 +614,6 @@ packages:
       '@babel/types': 7.16.7
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/highlight/7.14.5:
-    resolution: {integrity: sha512-qf9u2WFWVV0MppaL877j2dBtQIDgmidgjGk5VIMw3OadXvYaXn66U1BFlH2t4+t3i+8PhedppRv+i40ABzd+gg==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-validator-identifier': 7.14.9
-      chalk: 2.4.2
-      js-tokens: 4.0.0
     dev: true
 
   /@babel/highlight/7.16.7:
@@ -10628,6 +10614,16 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
+  /load-json-file/6.2.0:
+    resolution: {integrity: sha512-gUD/epcRms75Cw8RT1pUdHugZYM5ce64ucs2GEISABwkRsOQr0q2wm/MV2TKThycIe5e0ytRweW2RZxclogCdQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      graceful-fs: 4.2.8
+      parse-json: 5.2.0
+      strip-bom: 4.0.0
+      type-fest: 0.6.0
+    dev: true
+
   /loader-runner/2.4.0:
     resolution: {integrity: sha512-Jsmr89RcXGIwivFY21FcRrisYZfvLMTWx5kOLc+JTxtpBOG6xML0vzbc6SEQG2FO9/4Fc3wW4LVcB5DmGflaRw==}
     engines: {node: '>=4.3.0 <5.0.0 || >=5.10'}
@@ -11752,7 +11748,7 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/code-frame': 7.14.5
+      '@babel/code-frame': 7.16.7
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.1.6
@@ -13899,6 +13895,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /strip-bom/4.0.0:
+    resolution: {integrity: sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==}
+    engines: {node: '>=8'}
+    dev: true
+
   /strip-comments/2.0.1:
     resolution: {integrity: sha512-ZprKx+bBLXv067WTCALv8SSz5l2+XhpYCsVtSqlMnkAXMWDq+/ekVbl1ghqP9rUHTzv6sm/DwCOiYutU/yp1fw==}
     engines: {node: '>=10'}
@@ -15112,6 +15113,15 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
+    dev: true
+
+  /vite-dts/1.0.4_vite@2.7.6:
+    resolution: {integrity: sha512-jfRsrBU8vibUS4a/AboDzHdph2/9/dpoMdYgkiD5tb4OXL75wnlzeEZ6D2XoEZNExwnkXqARKAvz7pv5VtUm5g==}
+    peerDependencies:
+      vite: '>2.0.0-0'
+    dependencies:
+      load-json-file: 6.2.0
+      vite: 2.7.6
     dev: true
 
   /vite-plugin-inspect/0.3.11_vite@2.7.6:
