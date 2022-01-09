@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     Counter: typeof import('./../components/Counter.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
     Footer: typeof import('./../components/Footer.vue')['default']
     ICarbonCampsite: typeof import('~icons/carbon/campsite')['default']
     ICarbonDicomOverlay: typeof import('~icons/carbon/dicom-overlay')['default']

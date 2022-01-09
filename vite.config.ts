@@ -6,6 +6,7 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
@@ -46,6 +47,8 @@ export default defineConfig({
         '@vueuse/core',
         'vitest',
       ],
+      // auto import Element Plus functions
+      resolvers: [ElementPlusResolver()],
       dts: 'src/types/auto-imports.d.ts',
     }),
 
@@ -63,8 +66,10 @@ export default defineConfig({
         // https://github.com/antfu/unplugin-icons
         IconsResolver({
           prefix: 'i',
-          // enabledCollections: ['carbon']
+          // enabledCollections: ['carbon'],
         }),
+        // auto import Element Plus components with styles
+        ElementPlusResolver(),
       ],
 
       dts: 'src/types/components.d.ts',
@@ -73,6 +78,7 @@ export default defineConfig({
     // https://github.com/antfu/unplugin-icons
     Icons({
       autoInstall: true,
+      compiler: 'vue3',
     }),
 
     // https://github.com/antfu/vite-plugin-windicss

@@ -39,9 +39,9 @@ watchEffect(() => {
     </template>
 
     <div>
-      <button class="btn m-3 text-sm mt-6" @click="router.back()">
+      <el-button @click="router.back()">
         {{ t('button.back') }}
-      </button>
+      </el-button>
     </div>
   </div>
 </template>
