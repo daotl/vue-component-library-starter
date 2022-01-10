@@ -11,7 +11,8 @@ const AutoImport = require('unplugin-auto-import/vite')
 const IconsResolver = require('unplugin-icons/resolver')
 const Icons = require('unplugin-icons/vite')
 const Components = require('unplugin-vue-components/vite')
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+const ElementPlus = require('unplugin-element-plus/vite').default
 const Inspect = require('vite-plugin-inspect').default
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
@@ -65,6 +66,9 @@ exports.commonPlugins = [
 
     dts: 'src/types/components.d.ts',
   }),
+
+  // https://github.com/element-plus/unplugin-element-plus/
+  ElementPlus(),
 
   // https://github.com/antfu/unplugin-icons
   Icons({
