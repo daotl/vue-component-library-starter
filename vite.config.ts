@@ -4,6 +4,7 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Prism from 'markdown-it-prism'
 import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -74,6 +75,9 @@ export default defineConfig({
 
       dts: 'src/types/components.d.ts',
     }),
+
+    // https://github.com/element-plus/unplugin-element-plus/
+    ElementPlus(),
 
     // https://github.com/antfu/unplugin-icons
     Icons({
