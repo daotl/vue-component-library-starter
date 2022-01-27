@@ -21,8 +21,6 @@
     "**/*.js",
     "**/*.ts",
     "src/**/*.vue",
-    ".eslintrc.js",
-    ".stylelintrc.js"
   ],
   "exclude": [
     "dist",
