@@ -11,7 +11,7 @@ const AutoImport = require('unplugin-auto-import/vite')
 const IconsResolver = require('unplugin-icons/resolver')
 const Icons = require('unplugin-icons/vite')
 const Components = require('unplugin-vue-components/vite')
-const Inspect = require('vite-plugin-inspect').default
+const Inspect = require('vite-plugin-inspect')
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
 const WindiCSS = require('vite-plugin-windicss').default
@@ -82,7 +82,7 @@ exports.commonPlugins = [
       md.use(Prism)
       // @ts-expect-error types mismatch
       md.use(LinkAttributes, {
-        pattern: /^https?:\/\//,
+        matcher: (link) => /^https?:\/\//.test(link),
         attrs: {
           target: '_blank',
           rel: 'noopener',
