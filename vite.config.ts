@@ -46,7 +46,6 @@ export default defineConfig({
         'vue-i18n',
         '@vueuse/head',
         '@vueuse/core',
-        'vitest',
       ],
       // auto import Element Plus functions
       resolvers: [ElementPlusResolver()],
