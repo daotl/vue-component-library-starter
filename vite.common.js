@@ -35,7 +35,6 @@ exports.commonPlugins = [
       'vue-i18n',
       '@vueuse/head',
       '@vueuse/core',
-      'vitest',
     ],
     dts: 'src/types/auto-imports.d.ts',
   }),
