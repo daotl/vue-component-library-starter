@@ -3,10 +3,9 @@ import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Prism from 'markdown-it-prism'
 import path from 'path'
+import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
-import IconsResolver from 'unplugin-icons/resolver'
-import Icons from 'unplugin-icons/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
@@ -15,7 +14,7 @@ import Markdown from 'vite-plugin-md'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
 import Layouts from 'vite-plugin-vue-layouts'
-import WindiCSS from 'vite-plugin-windicss'
+import generateSitemap from 'vite-ssg-sitemap'
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -56,38 +55,22 @@ export default defineConfig({
     Components({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
-
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-
       // custom resolvers
       resolvers: [
-        // auto import icons
-        // https://github.com/antfu/unplugin-icons
-        IconsResolver({
-          prefix: 'i',
-          // enabledCollections: ['carbon'],
-        }),
         // auto import Element Plus components with styles
         ElementPlusResolver(),
       ],
-
       dts: 'src/types/components.d.ts',
     }),
 
     // https://github.com/element-plus/unplugin-element-plus/
     ElementPlus(),
 
-    // https://github.com/antfu/unplugin-icons
-    Icons({
-      autoInstall: true,
-      compiler: 'vue3',
-    }),
-
-    // https://github.com/antfu/vite-plugin-windicss
-    WindiCSS({
-      safelist: markdownWrapperClasses,
-    }),
+    // https://github.com/unocss/unocss
+    // see unocss.config.ts for config
+    Unocss(),
 
     // https://github.com/antfu/vite-plugin-md
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
@@ -110,7 +93,7 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-pwa
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
+      includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
         name: 'Vitesse',
         short_name: 'Vitesse',
@@ -144,22 +127,17 @@ export default defineConfig({
     }),
 
     // https://github.com/antfu/vite-plugin-inspect
-    Inspect({
-      // change this to enable inspect for debugging
-      enabled: false,
-    }),
+    // Visit http://localhost:3333/__inspect/ to see the inspector
+    Inspect(),
   ],
-
-  server: {
-    fs: {
-      strict: true,
-    },
-  },
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
+    onFinished() {
+      generateSitemap()
+    },
   },
 
   optimizeDeps: {

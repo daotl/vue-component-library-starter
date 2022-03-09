@@ -7,10 +7,6 @@ declare module 'vue' {
     Counter: typeof import('./../components/Counter.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     Footer: typeof import('./../components/Footer.vue')['default']
-    ICarbonCampsite: typeof import('~icons/carbon/campsite')['default']
-    ICarbonDicomOverlay: typeof import('~icons/carbon/dicom-overlay')['default']
-    ICarbonPedestrian: typeof import('~icons/carbon/pedestrian')['default']
-    ICarbonWarning: typeof import('~icons/carbon/warning')['default']
     README: typeof import('./../components/README.md')['default']
   }
 }
