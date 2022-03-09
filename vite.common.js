@@ -8,13 +8,11 @@ const VueI18n = require('@intlify/vite-plugin-vue-i18n').default
 const LinkAttributes = require('markdown-it-link-attributes')
 const Prism = require('markdown-it-prism')
 const AutoImport = require('unplugin-auto-import/vite')
-const IconsResolver = require('unplugin-icons/resolver')
-const Icons = require('unplugin-icons/vite')
 const Components = require('unplugin-vue-components/vite')
+const Unocss = require('unocss/vite').default
 const Inspect = require('vite-plugin-inspect')
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
-const WindiCSS = require('vite-plugin-windicss').default
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -43,32 +41,14 @@ exports.commonPlugins = [
   Components({
     // allow auto load markdown components under `./src/components/`
     extensions: ['vue', 'md'],
-
     // allow auto import and register components used in markdown
     include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-
-    // custom resolvers
-    resolvers: [
-      // auto import icons
-      // https://github.com/antfu/unplugin-icons
-      IconsResolver({
-        prefix: 'i',
-        // enabledCollections: ['carbon'],
-      }),
-    ],
-
     dts: 'src/types/components.d.ts',
   }),
 
-  // https://github.com/antfu/unplugin-icons
-  Icons({
-    autoInstall: true,
-  }),
-
-  // https://github.com/antfu/vite-plugin-windicss
-  WindiCSS({
-    safelist: markdownWrapperClasses,
-  }),
+  // https://github.com/unocss/unocss
+  // see unocss.config.ts for config
+  Unocss(),
 
   // https://github.com/antfu/vite-plugin-md
   // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
@@ -127,8 +107,6 @@ exports.commonPlugins = [
   }),
 
   // https://github.com/antfu/vite-plugin-inspect
-  Inspect({
-    // change this to enable inspect for debugging
-    enabled: false,
-  }),
+  // Visit http://localhost:3333/__inspect/ to see the inspector
+  Inspect(),
 ]

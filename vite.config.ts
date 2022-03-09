@@ -1,10 +1,12 @@
 import Vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import path from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-dts'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
+import generateSitemap from 'vite-ssg-sitemap'
 
+// eslint-disable-next-line import/named
 import { commonConfig, commonPlugins } from './vite.common'
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -30,16 +32,13 @@ export default defineConfig({
     ...commonPlugins,
   ],
 
-  server: {
-    fs: {
-      strict: true,
-    },
-  },
-
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
+    onFinished() {
+      generateSitemap()
+    },
   },
 
   optimizeDeps: {
@@ -58,7 +57,7 @@ export default defineConfig({
 
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'vue-components',
     },
     rollupOptions: {
