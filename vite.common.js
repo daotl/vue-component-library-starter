@@ -51,12 +51,15 @@ exports.commonPlugins = [
       // auto import Element Plus components with styles
       ElementPlusResolver(),
     ],
-
     dts: 'src/types/components.d.ts',
   }),
 
   // https://github.com/element-plus/unplugin-element-plus/
   ElementPlus(),
+
+  // https://github.com/unocss/unocss
+  // see unocss.config.ts for config
+  Unocss(),
 
   // https://github.com/antfu/vite-plugin-md
   // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
@@ -115,8 +118,6 @@ exports.commonPlugins = [
   }),
 
   // https://github.com/antfu/vite-plugin-inspect
-  Inspect({
-    // change this to enable inspect for debugging
-    enabled: false,
-  }),
+  // Visit http://localhost:3333/__inspect/ to see the inspector
+  Inspect(),
 ]
