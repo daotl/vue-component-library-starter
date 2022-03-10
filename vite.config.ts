@@ -1,9 +1,10 @@
 import Vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import path from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-dts'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
+import generateSitemap from 'vite-ssg-sitemap'
 
 import { commonConfig, commonPlugins } from './vite.common'
 
@@ -30,21 +31,18 @@ export default defineConfig({
     ...commonPlugins,
   ],
 
-  server: {
-    fs: {
-      strict: true,
-    },
-  },
-
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
+    onFinished() {
+      generateSitemap()
+    },
   },
 
   optimizeDeps: {
     include: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
-    exclude: ['vue-Devi'],
+    exclude: ['vue-demi'],
   },
 
   // https://github.com/vitest-dev/vitest
@@ -58,7 +56,7 @@ export default defineConfig({
 
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'vue-components',
     },
     rollupOptions: {

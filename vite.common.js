@@ -3,20 +3,17 @@
 // Since Storybook is using CommonJS format, we also have to.
 
 const path = require('path')
-
 const VueI18n = require('@intlify/vite-plugin-vue-i18n').default
 const LinkAttributes = require('markdown-it-link-attributes')
 const Prism = require('markdown-it-prism')
 const AutoImport = require('unplugin-auto-import/vite')
-const IconsResolver = require('unplugin-icons/resolver')
-const Icons = require('unplugin-icons/vite')
 const Components = require('unplugin-vue-components/vite')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
-const ElementPlus = require('unplugin-element-plus/vite').default
+const ElementPlus = require('unplugin-element-plus/vite')
+const Unocss = require('unocss/vite').default
 const Inspect = require('vite-plugin-inspect')
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
-const WindiCSS = require('vite-plugin-windicss').default
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -47,18 +44,10 @@ exports.commonPlugins = [
   Components({
     // allow auto load markdown components under `./src/components/`
     extensions: ['vue', 'md'],
-
     // allow auto import and register components used in markdown
     include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-
     // custom resolvers
     resolvers: [
-      // auto import icons
-      // https://github.com/antfu/unplugin-icons
-      IconsResolver({
-        prefix: 'i',
-        // enabledCollections: ['carbon'],
-      }),
       // auto import Element Plus components with styles
       ElementPlusResolver(),
     ],
@@ -68,17 +57,6 @@ exports.commonPlugins = [
 
   // https://github.com/element-plus/unplugin-element-plus/
   ElementPlus(),
-
-  // https://github.com/antfu/unplugin-icons
-  Icons({
-    autoInstall: true,
-    compiler: 'vue3',
-  }),
-
-  // https://github.com/antfu/vite-plugin-windicss
-  WindiCSS({
-    safelist: markdownWrapperClasses,
-  }),
 
   // https://github.com/antfu/vite-plugin-md
   // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite

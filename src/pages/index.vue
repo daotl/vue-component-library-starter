@@ -14,9 +14,9 @@ const { t } = useI18n()
 
 <template>
   <div>
-    <p class="text-4xl">
-      <i-carbon-campsite class="inline-block" />
-    </p>
+    <div text-4xl>
+      <div i-carbon-campsite inline-block />
+    </div>
     <p>
       <a
         rel="noreferrer"
@@ -27,10 +27,10 @@ const { t } = useI18n()
       </a>
     </p>
     <p>
-      <em class="text-sm opacity-75">{{ t('intro.desc') }}</em>
+      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
     </p>
 
-    <div class="py-4" />
+    <div py-4 />
 
     <input
       id="input"
@@ -39,7 +39,7 @@ const { t } = useI18n()
       :aria-label="t('intro.whats-your-name')"
       type="text"
       autocomplete="false"
-      p="x-4 y-2"
+      p="x4 y2"
       w="250px"
       text="center"
       bg="transparent"

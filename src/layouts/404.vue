@@ -4,11 +4,9 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <main class="px-4 py-10 text-center text-teal-700 dark:text-gray-200">
-    <div>
-      <p class="text-4xl">
-        <i-carbon-warning class="inline-block" />
-      </p>
+  <main p="x4 y10" text="center teal-700 dark:gray-200">
+    <div text-4xl>
+      <div i-carbon-warning inline-block />
     </div>
     <router-view />
     <div>
