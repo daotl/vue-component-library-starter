@@ -61,11 +61,13 @@ export default defineConfig({
       name: 'vue-components',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vue-i18n', 'vue-router'],
       output: {
         // Specifies id: variableName pairs necessary for external imports in umd/iife bundles.
         globals: {
           vue: 'Vue',
+          'vue-i18n': 'VueI18n',
+          'vue-router': 'VueRouter',
         },
         // Since we publish our ./src folder, there's no point
         // in bloating sourcemaps with another copy of it.
