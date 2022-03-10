@@ -8,7 +8,8 @@ const LinkAttributes = require('markdown-it-link-attributes')
 const Prism = require('markdown-it-prism')
 const AutoImport = require('unplugin-auto-import/vite')
 const Components = require('unplugin-vue-components/vite')
-const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+// Cannot use this for UI libraries, or code of element-plus components will be included in the build output
+// const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 const ElementPlus = require('unplugin-element-plus/vite')
 const Unocss = require('unocss/vite').default
 const Inspect = require('vite-plugin-inspect')
@@ -36,7 +37,7 @@ exports.commonPlugins = [
       '@vueuse/core',
     ],
     // auto import Element Plus functions
-    resolvers: [ElementPlusResolver()],
+    // resolvers: [ElementPlusResolver()],
     dts: 'src/types/auto-imports.d.ts',
   }),
 
@@ -49,7 +50,7 @@ exports.commonPlugins = [
     // custom resolvers
     resolvers: [
       // auto import Element Plus components with styles
-      ElementPlusResolver(),
+      // ElementPlusResolver(),
     ],
     dts: 'src/types/components.d.ts',
   }),
