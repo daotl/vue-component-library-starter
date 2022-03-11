@@ -6,6 +6,7 @@ specifiers:
   '@iconify-json/carbon': ^1.1.1
   '@iconify-json/el': ^1.1.1
   '@intlify/vite-plugin-vue-i18n': ^3.3.1
+  '@stylelint/postcss-css-in-js': ^0.37.2
   '@types/lodash-es': ^4.17.6
   '@types/markdown-it-link-attributes': ^3.0.1
   '@types/nprogress': ^0.2.0
@@ -34,6 +35,7 @@ specifiers:
   pnpm: ^6.32.3
   postcss: ^8.4.8
   postcss-html: ^1.3.0
+  postcss-syntax: ^0.36.2
   prettier: ^2.5.1
   prism-theme-vars: ^0.2.2
   sass: ^1.49.9
@@ -81,6 +83,7 @@ devDependencies:
   '@iconify-json/carbon': 1.1.1
   '@iconify-json/el': 1.1.1
   '@intlify/vite-plugin-vue-i18n': 3.3.1_vite@2.8.6+vue-i18n@9.1.9
+  '@stylelint/postcss-css-in-js': 0.37.2_410584e10f9214042d2015e427eae6f7
   '@types/lodash-es': 4.17.6
   '@types/markdown-it-link-attributes': 3.0.1
   '@types/nprogress': 0.2.0
@@ -104,6 +107,7 @@ devDependencies:
   pnpm: 6.32.3
   postcss: 8.4.8
   postcss-html: 1.3.0
+  postcss-syntax: 0.36.2_postcss@8.4.8
   prettier: 2.5.1
   sass: 1.49.9
   stylelint: 14.5.3
@@ -1697,6 +1701,19 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /@stylelint/postcss-css-in-js/0.37.2_410584e10f9214042d2015e427eae6f7:
+    resolution: {integrity: sha512-nEhsFoJurt8oUmieT8qy4nk81WRHmJynmVwn/Vts08PL9fhgIsMhk1GId5yAN643OzqEEb5S/6At2TZW7pqPDA==}
+    peerDependencies:
+      postcss: '>=7.0.0'
+      postcss-syntax: '>=0.36.2'
+    dependencies:
+      '@babel/core': 7.17.5
+      postcss: 8.4.8
+      postcss-syntax: 0.36.2_postcss@8.4.8
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@surma/rollup-plugin-off-main-thread/2.2.3:
@@ -6342,6 +6359,14 @@ packages:
     resolution: {integrity: sha512-iLBFYz6VRYyLJEJsBJ8M3TCqNcckVzz4wFounSc5Oez35ogE/X+aoC5fFu103Ot7NyvjU3/xqIXn93Gp3kJk4g==}
     peerDependencies:
       postcss: ^8.3.9
+    dependencies:
+      postcss: 8.4.8
+    dev: true
+
+  /postcss-syntax/0.36.2_postcss@8.4.8:
+    resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
+    peerDependencies:
+      postcss: '>=5.0.0'
     dependencies:
       postcss: 8.4.8
     dev: true
