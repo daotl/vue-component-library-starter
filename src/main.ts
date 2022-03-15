@@ -1,5 +1,5 @@
 import '@unocss/reset/tailwind.css'
-import './styles/main.css'
+import './styles/app.css'
 // eslint-disable-next-line import/no-unresolved
 import 'uno.css'
 
