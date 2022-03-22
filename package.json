@@ -13,7 +13,8 @@
     ".": {
       "import": "./dist/vue-components.es.js",
       "require": "./dist/vue-components.umd.js"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
