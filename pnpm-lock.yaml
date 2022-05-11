@@ -13,6 +13,7 @@ specifiers:
   '@storybook/core-common': ^6.4.22
   '@storybook/node-logger': ^6.4.22
   '@storybook/vue3': ^6.4.22
+  '@stylelint/postcss-css-in-js': ^0.38.0
   '@types/markdown-it-link-attributes': ^3.0.1
   '@types/nprogress': ^0.2.0
   '@unocss/preset-attributify': ^0.33.2
@@ -41,6 +42,7 @@ specifiers:
   pnpm: ^7.0.1
   postcss: ^8.4.13
   postcss-html: ^1.4.1
+  postcss-syntax: ^0.36.2
   prettier: ^2.6.2
   prism-theme-vars: ^0.2.2
   react: ^18.1.0
@@ -95,6 +97,7 @@ devDependencies:
   '@storybook/core-common': 6.4.22_t4cqyaxwbtpsab7uej7nin732q
   '@storybook/node-logger': 6.4.22
   '@storybook/vue3': 6.4.22_2w3dr7wmfptnuoakbeqiw2kzfi
+  '@stylelint/postcss-css-in-js': 0.38.0_34hy6nyp6dwic4v7tgylovy2su
   '@types/markdown-it-link-attributes': 3.0.1
   '@types/nprogress': 0.2.0
   '@unocss/preset-attributify': 0.33.2
@@ -119,6 +122,7 @@ devDependencies:
   pnpm: 7.0.1
   postcss: 8.4.13
   postcss-html: 1.4.1
+  postcss-syntax: 0.36.2_f5bgo3tbvmeytr2ftazaknud3a
   prettier: 2.6.2
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
@@ -4345,6 +4349,19 @@ packages:
       - vue-template-compiler
       - webpack-cli
       - webpack-command
+    dev: true
+
+  /@stylelint/postcss-css-in-js/0.38.0_34hy6nyp6dwic4v7tgylovy2su:
+    resolution: {integrity: sha512-XOz5CAe49kS95p5yRd+DAIWDojTjfmyAQ4bbDlXMdbZTQ5t0ThjSLvWI6JI2uiS7MFurVBkZ6zUqcimzcLTBoQ==}
+    peerDependencies:
+      postcss: '>=7.0.0'
+      postcss-syntax: '>=0.36.2'
+    dependencies:
+      '@babel/core': 7.17.10
+      postcss: 8.4.13
+      postcss-syntax: 0.36.2_f5bgo3tbvmeytr2ftazaknud3a
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@surma/rollup-plugin-off-main-thread/2.2.3:
@@ -12545,6 +12562,31 @@ packages:
       postcss: ^8.3.9
     dependencies:
       postcss: 8.4.13
+    dev: true
+
+  /postcss-syntax/0.36.2_f5bgo3tbvmeytr2ftazaknud3a:
+    resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
+    peerDependencies:
+      postcss: '>=5.0.0'
+      postcss-html: '*'
+      postcss-jsx: '*'
+      postcss-less: '*'
+      postcss-markdown: '*'
+      postcss-scss: '*'
+    peerDependenciesMeta:
+      postcss-html:
+        optional: true
+      postcss-jsx:
+        optional: true
+      postcss-less:
+        optional: true
+      postcss-markdown:
+        optional: true
+      postcss-scss:
+        optional: true
+    dependencies:
+      postcss: 8.4.13
+      postcss-html: 1.4.1
     dev: true
 
   /postcss-value-parser/4.2.0:
