@@ -69,9 +69,7 @@ exports.commonPlugins = [
     headEnabled: true,
     markdownItSetup(md) {
       // https://prismjs.com/
-      // @ts-expect-error types mismatch
       md.use(Prism)
-      // @ts-expect-error types mismatch
       md.use(LinkAttributes, {
         matcher: (link) => /^https?:\/\//.test(link),
         attrs: {
@@ -85,7 +83,7 @@ exports.commonPlugins = [
   // https://github.com/antfu/vite-plugin-pwa
   VitePWA({
     registerType: 'autoUpdate',
-    includeAssets: ['favicon.svg', 'robots.txt', 'safari-pinned-tab.svg'],
+    includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
     manifest: {
       name: 'Vitesse',
       short_name: 'Vitesse',
