@@ -4,9 +4,11 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Prism from 'markdown-it-prism'
 import path from 'path'
 import Unocss from 'unocss/vite'
+// eslint-disable-next-line import/no-unresolved
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// eslint-disable-next-line import/no-unresolved
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
@@ -52,6 +54,7 @@ export default defineConfig({
     }),
 
     // https://github.com/antfu/unplugin-vue-components
+
     Components({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
@@ -127,6 +130,7 @@ export default defineConfig({
     }),
 
     // https://github.com/antfu/vite-plugin-inspect
+
     // Visit http://localhost:3333/__inspect/ to see the inspector
     Inspect(),
   ],
