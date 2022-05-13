@@ -1,7 +1,7 @@
 import Vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { defineConfig } from 'vite'
-import dts from 'vite-dts'
+import dts from 'vite-plugin-dts'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import generateSitemap from 'vite-ssg-sitemap'
@@ -25,8 +25,12 @@ export default defineConfig({
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
 
-    // https://github.com/alloc/vite-dts
-    dts(),
+    // https://github.com/qmhc/vite-plugin-dts
+    dts({
+      outputDir: 'dist/types',
+      include: 'src',
+      // rollupTypes: true,
+    }),
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ...commonPlugins,
