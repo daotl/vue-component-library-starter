@@ -15,6 +15,7 @@
     },
     "./style.css": "./dist/style.css"
   },
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -99,7 +100,7 @@
     "unplugin-auto-import": "^0.7.1",
     "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.8",
-    "vite-dts": "^1.0.4",
+    "vite-plugin-dts": "^1.1.1",
     "vite-plugin-inspect": "^0.5.0",
     "vite-plugin-md": "^0.13.1",
     "vite-plugin-pages": "^0.23.0",
