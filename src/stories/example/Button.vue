@@ -1,9 +1,3 @@
-<template>
-  <button type="button" :class="classes" :style="style" @click="onClick">
-    {{ label }}
-  </button>
-</template>
-
 <script lang="ts">
 import './button.css'
 
@@ -45,10 +39,16 @@ export default defineComponent({
       style: computed(() => ({
         backgroundColor: props.backgroundColor,
       })),
-      onClick() {
+      onClick(): void {
         emit('click')
       },
     }
   },
 })
 </script>
+
+<template>
+  <button type="button" :class="classes" :style="style" @click="onClick">
+    {{ label }}
+  </button>
+</template>

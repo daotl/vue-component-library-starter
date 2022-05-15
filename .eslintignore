@@ -1,6 +1,7 @@
-!.stylelintrc.js
 node_modules
 dist
+storybook-static
 public
 src/types/auto-imports.d.ts
 src/types/components.d.ts
+*.md

@@ -1,4 +1,3 @@
-/* eslint-disable  */
 // This is the common config and plugins for main Vite and Storybook's Vite to import.
 // Since Storybook is using CommonJS format, we also have to.
 
@@ -13,6 +12,7 @@ const Components = require('unplugin-vue-components/vite')
 const ElementPlus = require('unplugin-element-plus/vite')
 const Unocss = require('unocss/vite').default
 const Inspect = require('vite-plugin-inspect')
+const Inspector = require('vite-plugin-vue-inspector').default
 const Markdown = require('vite-plugin-md').default
 const { VitePWA } = require('vite-plugin-pwa')
 
@@ -33,6 +33,7 @@ exports.commonPlugins = [
       'vue',
       'vue-router',
       'vue-i18n',
+      'vue/macros',
       '@vueuse/head',
       '@vueuse/core',
     ],
@@ -119,4 +120,9 @@ exports.commonPlugins = [
   // https://github.com/antfu/vite-plugin-inspect
   // Visit http://localhost:3333/__inspect/ to see the inspector
   Inspect(),
+
+  // https://github.com/webfansplz/vite-plugin-vue-inspector
+  Inspector({
+    enabled: false,
+  }),
 ]

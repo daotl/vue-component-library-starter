@@ -5,24 +5,15 @@
     "types": [
       "node",
       "vite/client",
+      "vue/ref-macros",
       "vite-plugin-pages/client",
       "vite-plugin-vue-layouts/client",
       "unplugin-icons/types/vue",
       "element-plus/global"
     ],
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "~/*": ["src/*"]
     }
   },
-  "include": [
-    "**/*.js",
-    "**/*.ts",
-    "src/**/*.vue",
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "exclude": ["dist", "node_modules"]
 }

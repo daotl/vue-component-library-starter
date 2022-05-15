@@ -47,6 +47,7 @@ And you will see the generated file in `dist` that ready to be served.
 
 <br>
 
+
 ## Features
 
 - ⚡️ [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
@@ -71,6 +72,8 @@ And you will see the generated file in `dist` that ready to be served.
 
 - 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
 
+- 🤙🏻 [Reactivity Transform](https://vuejs.org/guide/extras/reactivity-transform.html) enabled
+
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import) - use Composition API and others directly
 
 - 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
@@ -84,6 +87,7 @@ And you will see the generated file in `dist` that ready to be served.
 - ☁️ Deploy on Netlify, zero-config
 
 <br>
+
 
 ## Pre-packed
 
@@ -113,6 +117,7 @@ And you will see the generated file in `dist` that ready to be served.
 - [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
 - [`vite-ssg-sitemap`](https://github.com/jbaubree/vite-ssg-sitemap) - Sitemap generator
 - [`@vueuse/head`](https://github.com/vueuse/head) - manipulate document head reactively
+- [`vite-plugin-vue-inspector`](https://github.com/webfansplz/vite-plugin-vue-inspector) - jump to local IDE source code while click the element of browser automatically
 
 ### Coding Style
 
@@ -153,7 +158,6 @@ As this template is strongly opinionated, the following provides a curated list 
 
 ###### Community
 
-- [vitesse-addons](https://github.com/JohnCampionJr/vitesse-addons) by [@johncampionjr](https://github.com/johncampionjr) - additional options for integrations, including [Prettier](https://prettier.io) and [Storybook](https://storybook.js.org)
 - [vitesse-ssr-template](https://github.com/frandiox/vitesse-ssr-template) by [@frandiox](https://github.com/frandiox) - Vitesse with SSR
 - [vitespa](https://github.com/ctholho/vitespa) by [@ctholho](https://github.com/ctholho) - Like Vitesse but without SSG/SSR
 - [vitailse](https://github.com/zynth17/vitailse) by [@zynth17](https://github.com/zynth17) - Like Vitesse but with TailwindCSS
@@ -161,6 +165,7 @@ As this template is strongly opinionated, the following provides a curated list 
 - [vitesse-stackter-clean-architect](https://github.com/shamscorner/vitesse-stackter-clean-architect) by [@shamscorner](https://github.com/shamscorner) - A modular clean architecture pattern in vitesse template
 - [vitesse-enterprise](https://github.com/FranciscoKloganB/vitesse-enterprise) by [@FranciscoKloganB](https://github.com/FranciscoKloganB) - Consistent coding styles regardless of team-size.
 - [vitecamp](https://github.com/nekobc1998923/vitecamp) by [@nekobc1998923](https://github.com/nekobc1998923) - Like Vitesse but without SSG/SSR/File based routing, includes Element Plus
+- [vitesse-lite-react](https://github.com/lxy-yz/vitesse-lite-react) by [@lxy-yz](https://github.com/lxy-yz) - vitesse-lite React fork
 
 ## Try it now!
 

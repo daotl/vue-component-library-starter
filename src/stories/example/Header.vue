@@ -1,3 +1,24 @@
+<script lang="ts">
+import './header.css'
+
+import MyButton from './Button.vue'
+
+export default defineComponent({
+  name: 'MyHeader',
+
+  components: { MyButton },
+
+  props: {
+    user: {
+      type: Object,
+      default: undefined,
+    },
+  },
+
+  emits: ['login', 'logout', 'createAccount'],
+})
+</script>
+
 <template>
   <header>
     <div class="wrapper">
@@ -26,19 +47,19 @@
         <h1>Acme</h1>
       </div>
       <div>
-        <my-button
+        <MyButton
           v-if="user"
           size="small"
           label="Log out"
           @click="$emit('logout')"
         />
-        <my-button
+        <MyButton
           v-if="!user"
           size="small"
           label="Log in"
           @click="$emit('login')"
         />
-        <my-button
+        <MyButton
           v-if="!user"
           primary
           size="small"
@@ -49,24 +70,3 @@
     </div>
   </header>
 </template>
-
-<script lang="ts">
-import './header.css'
-
-import MyButton from './Button.vue'
-
-export default defineComponent({
-  name: 'MyHeader',
-
-  components: { MyButton },
-
-  props: {
-    user: {
-      type: Object,
-      default: undefined,
-    },
-  },
-
-  emits: ['login', 'logout', 'createAccount'],
-})
-</script>

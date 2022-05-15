@@ -1,6 +1,27 @@
+<script lang="ts">
+import './page.css'
+
+import MyHeader from './Header.vue'
+
+export default defineComponent({
+  name: 'MyPage',
+
+  components: { MyHeader },
+
+  props: {
+    user: {
+      type: Object,
+      default: undefined,
+    },
+  },
+
+  emits: ['login', 'logout', 'createAccount'],
+})
+</script>
+
 <template>
   <article>
-    <my-header
+    <MyHeader
       :user="user"
       @login="$emit('login')"
       @logout="$emit('logout')"
@@ -74,24 +95,3 @@
     </section>
   </article>
 </template>
-
-<script lang="ts">
-import './page.css'
-
-import MyHeader from './Header.vue'
-
-export default defineComponent({
-  name: 'MyPage',
-
-  components: { MyHeader },
-
-  props: {
-    user: {
-      type: Object,
-      default: undefined,
-    },
-  },
-
-  emits: ['login', 'logout', 'createAccount'],
-})
-</script>
