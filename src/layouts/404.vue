@@ -8,7 +8,7 @@ const { t } = useI18n()
     <div text-4xl>
       <div i-carbon-warning inline-block />
     </div>
-    <router-view />
+    <RouterView />
     <div>
       <el-button @click="router.back()">
         {{ t('button.back') }}
