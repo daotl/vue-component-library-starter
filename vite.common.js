@@ -1,4 +1,3 @@
-/* eslint-disable  */
 // This is the common config and plugins for main Vite and Storybook's Vite to import.
 // Since Storybook is using CommonJS format, we also have to.
 
