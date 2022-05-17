@@ -4,4 +4,3 @@ storybook-static
 public
 src/types/auto-imports.d.ts
 src/types/components.d.ts
-*.md
