@@ -6,7 +6,7 @@
   "prettier": "@daotl/prettier-config",
   "main": "./dist/vue-components.umd.js",
   "module": "./dist/vue-components.es.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/vue-components.es.js",
