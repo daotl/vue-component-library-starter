@@ -13,7 +13,7 @@ const ElementPlus = require('unplugin-element-plus/vite')
 const Unocss = require('unocss/vite').default
 const Inspect = require('vite-plugin-inspect')
 const Inspector = require('vite-plugin-vue-inspector').default
-const Markdown = require('vite-plugin-md').default
+const Markdown = require('vite-plugin-vue-markdown').default
 const { VitePWA } = require('vite-plugin-pwa')
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
@@ -40,6 +40,8 @@ exports.commonPlugins = [
     // auto import Element Plus functions
     // resolvers: [ElementPlusResolver()],
     dts: 'src/types/auto-imports.d.ts',
+    dirs: ['src/composables', 'src/store'],
+    vueTemplate: true,
   }),
 
   // https://github.com/antfu/unplugin-vue-components
