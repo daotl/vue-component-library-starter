@@ -4,7 +4,7 @@
 const path = require('path')
 const VueI18n = require('@intlify/vite-plugin-vue-i18n').default
 const LinkAttributes = require('markdown-it-link-attributes')
-const Prism = require('markdown-it-prism')
+const Shiki = require('markdown-it-shiki')
 const AutoImport = require('unplugin-auto-import/vite')
 const Components = require('unplugin-vue-components/vite')
 // Cannot use this for UI libraries, or code of element-plus components will be included in the build output
@@ -65,14 +65,19 @@ exports.commonPlugins = [
   // see unocss.config.ts for config
   Unocss(),
 
-  // https://github.com/antfu/vite-plugin-md
+  // https://github.com/antfu/vite-plugin-vue-markdown
   // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
   Markdown({
     wrapperClasses: markdownWrapperClasses,
     headEnabled: true,
     markdownItSetup(md) {
       // https://prismjs.com/
-      md.use(Prism)
+      md.use(Shiki, {
+        theme: {
+          light: 'vitesse-light',
+          dark: 'vitesse-dark',
+        },
+      })
       md.use(LinkAttributes, {
         matcher: (link) => /^https?:\/\//.test(link),
         attrs: {
