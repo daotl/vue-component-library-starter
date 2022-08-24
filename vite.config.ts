@@ -76,6 +76,7 @@ export default defineConfig({
     target: 'esnext',
     // Leave minification up to applications.
     minify: false,
+    cssCodeSplit: true,
   },
 
   // https://github.com/antfu/vite-ssg
