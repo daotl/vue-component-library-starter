@@ -23,7 +23,7 @@ specifiers:
   critters: ^0.0.16
   cross-env: ^7.0.3
   cypress: ^10.6.0
-  element-plus: ^2.2.6
+  element-plus: ^2.2.14
   eslint: ^8.22.0
   eslint-plugin-cypress: ^2.12.1
   https-localhost: ^4.7.1
@@ -38,7 +38,7 @@ specifiers:
   postcss-html: ^1.5.0
   postcss-syntax: ^0.36.2
   prettier: ^2.7.1
-  sass: ^1.53.0
+  sass: ^1.54.5
   shiki: ^0.11.1
   stylelint: ^14.11.0
   stylelint-config-property-sort-order-smacss: ^9.0.0
@@ -49,7 +49,7 @@ specifiers:
   typescript: ^4.7.4
   unocss: ^0.45.12
   unplugin-auto-import: ^0.11.2
-  unplugin-element-plus: ^0.4.0
+  unplugin-element-plus: ^0.4.1
   unplugin-vue-components: ^0.22.4
   vite: ^3.0.9
   vite-plugin-inspect: ^0.6.0
@@ -106,7 +106,7 @@ devDependencies:
   lint-staged: 13.0.3
   markdown-it-link-attributes: 4.0.1
   markdown-it-shiki: 0.5.1
-  pnpm: 7.9.4
+  pnpm: 7.9.5
   postcss: 8.4.16
   postcss-html: 1.5.0
   postcss-syntax: 0.36.2_stybfx5lqo76n4bbvf2byxy6qm
@@ -7777,8 +7777,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm/7.9.4:
-    resolution: {integrity: sha512-eZG33kdDFmIzBZoSRguEHVLtnHdJTvfP6wm53SyBt4Mqzbro9eIaQcEcB4qfJCGMaLvPegG2MQxD2EiArALaJA==}
+  /pnpm/7.9.5:
+    resolution: {integrity: sha512-+r7+PlBIsblqia8eUOUsBp/R+lHmGAm55jyQRt3DWMUI0srVR1aNJhQECfx24L53Ckz9g48mVxQXEniQMWQPmw==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
