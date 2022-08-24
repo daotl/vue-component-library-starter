@@ -3,9 +3,9 @@
 
 const path = require('path')
 
-const VueI18n = require('@intlify/vite-plugin-vue-i18n').default
+const VueI18n = require('@intlify/vite-plugin-vue-i18n')
 const LinkAttributes = require('markdown-it-link-attributes')
-const Shiki = require('markdown-it-shiki')
+const Shiki = require('markdown-it-shiki').default
 const AutoImport = require('unplugin-auto-import/vite')
 const Components = require('unplugin-vue-components/vite')
 const Unocss = require('unocss/vite').default
