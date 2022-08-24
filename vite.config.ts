@@ -37,15 +37,6 @@ export default defineConfig({
     ...commonPlugins,
   ],
 
-  // https://github.com/antfu/vite-ssg
-  ssgOptions: {
-    script: 'async',
-    formatting: 'minify',
-    onFinished() {
-      generateSitemap()
-    },
-  },
-
   optimizeDeps: {
     include: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
     exclude: ['vue-Devi'],
@@ -84,5 +75,19 @@ export default defineConfig({
     target: 'esnext',
     // Leave minification up to applications.
     minify: false,
+  },
+
+  // https://github.com/antfu/vite-ssg
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    onFinished() {
+      generateSitemap()
+    },
+  },
+
+  ssr: {
+    // TODO: workaround until they support native ESM
+    noExternal: ['workbox-window', /vue-i18n/],
   },
 })

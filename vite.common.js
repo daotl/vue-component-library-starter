@@ -5,7 +5,7 @@ const path = require('path')
 
 const VueI18n = require('@intlify/vite-plugin-vue-i18n').default
 const LinkAttributes = require('markdown-it-link-attributes')
-const Prism = require('markdown-it-prism')
+const Shiki = require('markdown-it-shiki')
 const AutoImport = require('unplugin-auto-import/vite')
 const Components = require('unplugin-vue-components/vite')
 const Unocss = require('unocss/vite').default
@@ -60,7 +60,12 @@ exports.commonPlugins = [
     headEnabled: true,
     markdownItSetup(md) {
       // https://prismjs.com/
-      md.use(Prism)
+      md.use(Shiki, {
+        theme: {
+          light: 'vitesse-light',
+          dark: 'vitesse-dark',
+        },
+      })
       md.use(LinkAttributes, {
         matcher: (link) => /^https?:\/\//.test(link),
         attrs: {
