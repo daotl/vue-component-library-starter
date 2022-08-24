@@ -9,6 +9,12 @@ module.exports = {
         project: 'tsconfig.json',
       },
     },
+    {
+      files: '*.stories.ts',
+      rules: {
+        '@typescript-eslint/consistent-type-assertions': 'off',
+      },
+    },
   ],
   rules: {
     'no-undef': 'off', // Turned off for `unplugin-auto-import`
