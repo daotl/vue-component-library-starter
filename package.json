@@ -4,13 +4,13 @@
   "private": true,
   "packageManager": "pnpm@7.9.0",
   "prettier": "@daotl/prettier-config",
-  "main": "./dist/vue-components.umd.js",
-  "module": "./dist/vue-components.es.js",
+  "main": "./dist/vue-components.js",
+  "module": "./dist/vue-components.mjs",
   "types": "./dist/types/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/vue-components.es.js",
-      "require": "./dist/vue-components.umd.js"
+      "import": "./dist/vue-components.mjs",
+      "require": "./dist/vue-components.js"
     },
     "./style.css": "./dist/style.css"
   },
