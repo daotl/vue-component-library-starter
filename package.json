@@ -43,7 +43,7 @@
   "dependencies": {
     "@vueuse/core": "^9.2.0",
     "@vueuse/head": "^0.7.11",
-    "element-plus": "^2.2.14",
+    "element-plus": "^2.2.17",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.22",
     "vue": "^3.2.39",
@@ -96,7 +96,7 @@
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.54.5",
+    "sass": "^1.54.9",
     "shiki": "^0.11.1",
     "stylelint": "^14.11.0",
     "stylelint-config-property-sort-order-smacss": "^9.0.0",
