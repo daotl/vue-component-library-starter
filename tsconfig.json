@@ -8,8 +8,9 @@
       "vite/client",
       "vue/ref-macros",
       "vite-plugin-pages/client",
+      "vite-plugin-vue-component-preview/client",
       "vite-plugin-vue-layouts/client",
-      "unplugin-icons/types/vue",
+      "vite-plugin-pwa/client",
       "element-plus/global"
     ],
     "paths": {
