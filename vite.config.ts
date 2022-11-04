@@ -1,19 +1,22 @@
+import path from 'node:path'
+
 import Vue from '@vitejs/plugin-vue'
-import path from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import Pages from 'vite-plugin-pages'
+import Preview from 'vite-plugin-vue-component-preview'
+// import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
 import generateSitemap from 'vite-ssg-sitemap'
 
-// eslint-disable-next-line import/named
 import { commonConfig, commonPlugins } from './vite.common'
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 export default defineConfig({
   ...commonConfig,
 
   plugins: [
+    Preview(),
+
     Vue({
       include: [/\.vue$/, /\.md$/],
       reactivityTransform: true,
