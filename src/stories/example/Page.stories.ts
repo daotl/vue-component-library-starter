@@ -12,7 +12,7 @@ const Template: Story = (args) => ({
   // Components used in your story `template` are defined in the `components` object
   components: { MyPage },
   // The story's `args` need to be mapped into the template through the `setup()` method
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+
   setup() {
     // Story args can be mapped to keys in the returned object
     return { user: args.user as Record<string, unknown> }
