@@ -1,20 +1,21 @@
 // This is the common config and plugins for main Vite and Storybook's Vite to import.
 // Since Storybook is using CommonJS format, we also have to.
 
-const path = require('path')
+import path from 'node:path'
 
-const VueI18n = require('@intlify/vite-plugin-vue-i18n')
-const LinkAttributes = require('markdown-it-link-attributes')
-const Shiki = require('markdown-it-shiki').default
-const AutoImport = require('unplugin-auto-import/vite')
-const Components = require('unplugin-vue-components/vite')
-const Unocss = require('unocss/vite').default
-const Inspect = require('vite-plugin-inspect')
-const Inspector = require('vite-plugin-vue-inspector').default
-const Markdown = require('vite-plugin-vue-markdown').default
-const { VitePWA } = require('vite-plugin-pwa')
+import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import LinkAttributes from 'markdown-it-link-attributes'
+import Shiki from 'markdown-it-shiki'
+import Unocss from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import type { PluginOption, UserConfig } from 'vite'
+import Inspect from 'vite-plugin-inspect'
+import { VitePWA } from 'vite-plugin-pwa'
+import Inspector from 'vite-plugin-vue-inspector'
+import Markdown from 'vite-plugin-vue-markdown'
 
-exports.commonConfig = {
+export const commonConfig: UserConfig = {
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -22,7 +23,7 @@ exports.commonConfig = {
   },
 }
 
-exports.commonPlugins = [
+export const commonPlugins = [
   // https://github.com/antfu/unplugin-auto-import
   AutoImport({
     imports: [
@@ -65,7 +66,7 @@ exports.commonPlugins = [
         },
       })
       md.use(LinkAttributes, {
-        matcher: (link) => /^https?:\/\//.test(link),
+        matcher: (link: string) => /^https?:\/\//.test(link),
         attrs: {
           target: '_blank',
           rel: 'noopener',
@@ -118,4 +119,4 @@ exports.commonPlugins = [
   Inspector({
     enabled: false,
   }),
-]
+] as PluginOption[]

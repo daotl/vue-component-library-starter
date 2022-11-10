@@ -1,12 +1,18 @@
 module.exports = {
   root: true,
-  extends: '@daotl/vue/typescript',
+  extends: ['@daotl/vue/typescript', 'plugin:storybook/recommended'],
   overrides: [
     {
       files: '*.{ts,tsx,vue}',
       excludedFiles: ['*.mdx', '**/*.md/*.ts'],
       parserOptions: {
         project: 'tsconfig.json',
+      },
+    },
+    {
+      files: '*.mdx',
+      rules: {
+        'no-unused-expressions': 'off',
       },
     },
     {

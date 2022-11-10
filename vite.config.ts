@@ -36,7 +36,6 @@ export default defineConfig({
       // rollupTypes: true,
     }),
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ...commonPlugins,
   ],
 
