@@ -8,13 +8,15 @@
       "vite/client",
       "vue/ref-macros",
       "vite-plugin-pages/client",
+      "vite-plugin-vue-component-preview/client",
       "vite-plugin-vue-layouts/client",
-      "unplugin-icons/types/vue",
+      "vite-plugin-pwa/client",
       "element-plus/global"
     ],
     "paths": {
       "~/*": ["src/*"]
     }
   },
+  "include": ["./**/*.ts", "./**/*.vue", "./.storybook/*.ts"],
   "exclude": ["dist", "node_modules"]
 }
