@@ -35,7 +35,7 @@ const config: StorybookConfig = {
           'react-dom',
         ],
       },
-      plugins: [...commonPlugins, ...(config.plugins ?? [])],
+      plugins: [...commonPlugins('serve'), ...(config.plugins ?? [])],
     }
   },
 }
