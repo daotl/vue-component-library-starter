@@ -16,7 +16,7 @@ import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
-// import Preview from 'vite-plugin-vue-component-preview'
+import Preview from 'vite-plugin-vue-component-preview'
 import Inspector from 'vite-plugin-vue-inspector'
 // import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -33,110 +33,118 @@ export const commonConfig: UserConfig = {
 }
 
 // Common plugins for both library and Storybook
-export const commonPlugins: PluginOption[] = [
-  // https://github.com/antfu/unplugin-auto-import
-  AutoImport({
-    imports: [
-      'vue',
-      'vue-router',
-      'vue-i18n',
-      'vue/macros',
-      '@vueuse/head',
-      '@vueuse/core',
-      // auto import Element Plus functions
-      // resolvers: [ElementPlusResolver()],
-    ],
-    dts: 'src/types/auto-imports.d.ts',
-    dirs: ['src/composables', 'src/store'],
-    vueTemplate: true,
-  }),
+export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
+  return (
+    [
+      // https://github.com/antfu/unplugin-auto-import
+      AutoImport({
+        imports: [
+          'vue',
+          'vue-router',
+          'vue-i18n',
+          'vue/macros',
+          '@vueuse/head',
+          '@vueuse/core',
+          // auto import Element Plus functions
+          // resolvers: [ElementPlusResolver()],
+        ],
+        dts: 'src/types/auto-imports.d.ts',
+        dirs: ['src/composables', 'src/store'],
+        vueTemplate: true,
+      }),
 
-  // https://github.com/antfu/unplugin-vue-components
-  Components({
-    // allow auto load markdown components under `./src/components/`
-    extensions: ['vue', 'md'],
-    // allow auto import and register components used in markdown
-    include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-    // custom resolvers
-    resolvers: [
-      // auto import Element Plus components with styles
-      // ElementPlusResolver(),
-    ],
-    dts: 'src/types/components.d.ts',
-  }),
+      // https://github.com/antfu/unplugin-vue-components
+      Components({
+        // allow auto load markdown components under `./src/components/`
+        extensions: ['vue', 'md'],
+        // allow auto import and register components used in markdown
+        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+        // custom resolvers
+        resolvers: [
+          // auto import Element Plus components with styles
+          // ElementPlusResolver(),
+        ],
+        dts: 'src/types/components.d.ts',
+      }),
 
-  // https://github.com/element-plus/unplugin-element-plus/
-  ElementPlus(),
+      // https://github.com/element-plus/unplugin-element-plus/
+      ElementPlus(),
 
-  // https://github.com/unocss/unocss
-  // see unocss.config.ts for config
-  Unocss(),
+      // https://github.com/unocss/unocss
+      // see unocss.config.ts for config
+      Unocss(),
 
-  // https://github.com/antfu/vite-plugin-vue-markdown
-  // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
-  Markdown({
-    wrapperClasses: 'prose prose-sm m-auto text-left',
-    headEnabled: true,
-    markdownItSetup(md) {
-      // https://prismjs.com/
-      // Temporarily disabled for error in Storybook:
-      // See: https://github.com/storybookjs/storybook/issues/11587#issuecomment-1310017216
-      // md.use(Shiki, {
-      //   theme: {
-      //     light: 'vitesse-light',
-      //     dark: 'vitesse-dark',
-      //   },
-      // })
-      md.use(LinkAttributes, {
-        matcher: (link: string) => /^https?:\/\//.test(link),
-        attrs: {
-          target: '_blank',
-          rel: 'noopener',
+      // https://github.com/antfu/vite-plugin-vue-markdown
+      // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
+      Markdown({
+        wrapperClasses: 'prose prose-sm m-auto text-left',
+        headEnabled: true,
+        markdownItSetup(md) {
+          // https://prismjs.com/
+          // Temporarily disabled for error in Storybook:
+          // See: https://github.com/storybookjs/storybook/issues/11587#issuecomment-1310017216
+          // md.use(Shiki, {
+          //   theme: {
+          //     light: 'vitesse-light',
+          //     dark: 'vitesse-dark',
+          //   },
+          // })
+          md.use(LinkAttributes, {
+            matcher: (link: string) => /^https?:\/\//.test(link),
+            attrs: {
+              target: '_blank',
+              rel: 'noopener',
+            },
+          })
         },
-      })
-    },
-  }),
+      }),
 
-  // https://github.com/antfu/vite-plugin-pwa
-  VitePWA({
-    registerType: 'autoUpdate',
-    includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
-    manifest: {
-      name: 'Vitesse',
-      short_name: 'Vitesse',
-      theme_color: '#ffffff',
-      icons: [
-        {
-          src: '/pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
+      // https://github.com/antfu/vite-plugin-pwa
+      VitePWA({
+        registerType: 'autoUpdate',
+        includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
+        manifest: {
+          name: 'Vitesse',
+          short_name: 'Vitesse',
+          theme_color: '#ffffff',
+          icons: [
+            {
+              src: '/pwa-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
+            },
+            {
+              src: '/pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+            },
+            {
+              src: '/pwa-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
+              purpose: 'any maskable',
+            },
+          ],
         },
-        {
-          src: '/pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
-        {
-          src: '/pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'any maskable',
-        },
-      ],
-    },
-  }),
+      }),
+    ] as PluginOption[]
+  ).concat(
+    command === 'serve'
+      ? ([
+          // https://github.com/antfu/vite-plugin-inspect
+          // Visit http://localhost:3333/__inspect/ to see the inspector
+          Inspect(),
 
-  // https://github.com/antfu/vite-plugin-inspect
-  // Visit http://localhost:3333/__inspect/ to see the inspector
-  Inspect(),
+          // https://github.com/webfansplz/vite-plugin-vue-inspector
+          Inspector({
+            enabled: false,
+          }),
+        ] as PluginOption[])
+      : [],
+  )
+}
 
-  // https://github.com/webfansplz/vite-plugin-vue-inspector
-  Inspector({
-    enabled: false,
-  }),
-] as PluginOption[]
-
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   ...commonConfig,
 
   plugins: [
@@ -152,31 +160,35 @@ export default defineConfig({
       include: [path.resolve(__dirname, 'locales/**')],
     }),
 
-    // Disabled for building the library for not generating sourcemap
-    // Preview(),
-
     Vue({
       include: [/\.vue$/, /\.md$/],
       reactivityTransform: true,
     }),
 
-    Pages({
-      extensions: ['vue', 'md'],
-    }),
+    ...commonPlugins(command),
+  ].concat(
+    command === 'serve'
+      ? [
+          // Disabled for building the library for not generating sourcemap
+          Preview(),
 
-    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-    Layouts(),
+          Pages({
+            extensions: ['vue', 'md'],
+          }),
 
-    // https://github.com/qmhc/vite-plugin-dts
-    dts({
-      outputDir: 'dist/types',
-      include: 'src',
-      // rollupTypes: true,
-      skipDiagnostics: true, // `vue-tsc` already checks types
-    }),
-
-    ...commonPlugins,
-  ],
+          // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+          Layouts(),
+        ]
+      : [
+          // https://github.com/qmhc/vite-plugin-dts
+          dts({
+            outputDir: 'dist/types',
+            include: 'src',
+            // rollupTypes: true,
+            skipDiagnostics: true, // `vue-tsc` already checks types
+          }),
+        ],
+  ),
 
   optimizeDeps: {
     include: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
@@ -224,7 +236,7 @@ export default defineConfig({
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
-    onFinished() {
+    onFinished(): void {
       generateSitemap()
     },
   },
@@ -233,4 +245,4 @@ export default defineConfig({
     // TODO: workaround until they support native ESM
     noExternal: ['workbox-window', /vue-i18n/],
   },
-})
+}))
