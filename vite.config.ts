@@ -13,7 +13,7 @@ import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
-import Preview from 'vite-plugin-vue-component-preview'
+// import Preview from 'vite-plugin-vue-component-preview'
 import Inspector from 'vite-plugin-vue-inspector'
 // import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -139,7 +139,8 @@ export default defineConfig({
       include: [path.resolve(__dirname, 'locales/**')],
     }),
 
-    Preview(),
+    // Disabled for building the library for not generating sourcemap
+    // Preview(),
 
     Vue({
       include: [/\.vue$/, /\.md$/],
@@ -158,6 +159,7 @@ export default defineConfig({
       outputDir: 'dist/types',
       include: 'src',
       // rollupTypes: true,
+      skipDiagnostics: true, // `vue-tsc` already checks types
     }),
 
     ...commonPlugins,
