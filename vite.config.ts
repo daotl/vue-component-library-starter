@@ -7,9 +7,7 @@ import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
-// eslint-disable-next-line import/no-unresolved
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-// eslint-disable-next-line import/no-unresolved
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
