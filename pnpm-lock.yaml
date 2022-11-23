@@ -32,7 +32,7 @@ specifiers:
   critters: ^0.0.16
   cross-env: ^7.0.3
   cypress: ^11.2.0
-  element-plus: ^2.2.17
+  element-plus: ^2.2.22
   eslint: ^8.28.0
   eslint-plugin-cypress: ^2.12.1
   eslint-plugin-storybook: ^0.6.7
@@ -50,7 +50,7 @@ specifiers:
   prettier: ^2.8.0
   react: ^18.2.0
   react-dom: ^18.2.0
-  sass: ^1.54.9
+  sass: ^1.56.1
   shiki: ^0.11.1
   storybook: 7.0.0-alpha.52
   stylelint: ^14.15.0
@@ -86,7 +86,7 @@ dependencies:
   '@unocss/reset': 0.46.5
   '@vueuse/core': 9.6.0_vue@3.2.45
   '@vueuse/head': 1.0.18_vue@3.2.45
-  element-plus: 2.2.20_vue@3.2.45
+  element-plus: 2.2.22_vue@3.2.45
   nprogress: 0.2.0
   pinia: 2.0.25_mgnvym7yiazkylwwogi5r767ue
   vue: 3.2.45
@@ -6423,8 +6423,8 @@ packages:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
     dev: true
 
-  /element-plus/2.2.20_vue@3.2.45:
-    resolution: {integrity: sha512-ludShd3f5kNRY4FLzeoNitLcwZ4qs2M/zwKeyeE7rUzZJAQ0BZtcT3SvZoEoBLmgxw9jHoonl4WIwon4UzhyRA==}
+  /element-plus/2.2.22_vue@3.2.45:
+    resolution: {integrity: sha512-gg2g2WOMNpWf0wGesymUvTV0VZDF/4khQKroSNeCV/vWJ/cqssPYdtqfGxTiFRt/f+JpyFkV7O1mo0yzMCzrBg==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:
