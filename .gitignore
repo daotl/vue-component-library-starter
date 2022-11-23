@@ -9,3 +9,4 @@ node_modules
 *.log
 .eslintcache
 storybook-static
+cypress/downloads

@@ -6,7 +6,6 @@ const { t } = useI18n()
 
 watchEffect(() => {
   // FIXME: False positive
-   
   user.setNewName('a')
 })
 </script>
