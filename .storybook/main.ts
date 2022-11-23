@@ -3,6 +3,9 @@ import type { StorybookConfig } from '@storybook/builder-vite'
 import { commonConfig, commonPlugins } from '../vite.config'
 
 const config: StorybookConfig = {
+  core: {
+    disableTelemetry: true,
+  },
   framework: '@storybook/vue3-vite',
   // framework: {
   //   name: '@storybook/vue3-vite',
