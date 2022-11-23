@@ -1,10 +1,10 @@
+import path from 'node:path'
+
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
-import path from 'path'
 import Unocss from 'unocss/vite'
-// eslint-disable-next-line import/no-unresolved
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 // eslint-disable-next-line import/no-unresolved
