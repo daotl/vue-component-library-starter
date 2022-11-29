@@ -6,9 +6,9 @@ import LinkAttributes from 'markdown-it-link-attributes'
 // import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
+import ElementPlus from 'unplugin-element-plus/vite'
 // Cannot use this for UI libraries, or code of element-plus components will be included in the build output
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import ElementPlus from 'unplugin-element-plus/vite'
 import Components from 'unplugin-vue-components/vite'
 import type { PluginOption, UserConfig } from 'vite'
 import { defineConfig } from 'vite'
@@ -29,6 +29,9 @@ export const commonConfig: UserConfig = {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
+    // Fix issue when component libraries in the workspace are using different versions of deps like Vue
+    // See: https://github.com/vuejs/core/issues/4344#issuecomment-1023220225
+    dedupe: ['vue', 'vue-i18n', 'vue-router', 'element-plus'],
   },
 }
 
@@ -243,6 +246,12 @@ export default defineConfig(({ command }) => ({
 
   ssr: {
     // TODO: workaround until they support native ESM
-    noExternal: ['workbox-window', /vue-i18n/],
+    noExternal: [
+      'workbox-window',
+      /vue-i18n/,
+      // Fix `TypeError: Unknown file extension ".css" for .../element-plus/theme-chalk/el-button.css`
+      // See: https://github.com/antfu/vite-ssg/issues/171#issuecomment-1212862501
+      'element-plus',
+    ],
   },
 }))
