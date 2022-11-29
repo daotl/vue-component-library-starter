@@ -179,6 +179,12 @@ export default defineConfig({
 
   ssr: {
     // TODO: workaround until they support native ESM
-    noExternal: ['workbox-window', /vue-i18n/],
+    noExternal: [
+      'workbox-window',
+      /vue-i18n/,
+      // Fix `TypeError: Unknown file extension ".css" for .../element-plus/theme-chalk/el-button.css`
+      // See: https://github.com/antfu/vite-ssg/issues/171#issuecomment-1212862501
+      'element-plus',
+    ],
   },
 })
