@@ -214,7 +214,7 @@ export default defineConfig(({ command }) => ({
         preserveModulesRoot: '.',
         entryFileNames: ({ name }: { name: string }): string => {
           if (name?.startsWith('node_modules/') || name === '__uno.css') {
-            return `[format]/vendor/${name.replace(/^node_modules\//, '')}`
+            return `[format]/vendor/${name.replace(/^node_modules\//, '')}.js`
           }
 
           return `[format]/${name}.js`
