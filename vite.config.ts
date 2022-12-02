@@ -3,7 +3,7 @@ import path from 'node:path'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
-// import type { PreRenderedChunk } from 'rollup'
+// g pug push
 // import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -224,8 +224,19 @@ export default defineConfig(({ command }) => ({
       external: ['vue', 'vue-i18n', 'vue-router', 'element-plus'],
       output: {
         manualChunks(id): string | void {
-          if (id.includes('node_modules') || id === '/__uno.css') {
+          if (id.includes('node_modules')) {
             return 'vendor'
+          }
+
+          // Vite internal / virtual modules / plugins
+          if (/___?vite/.test(id) || id.startsWith('virtual:') || id.includes('plugin-vue:') || id === '/__uno.css') {
+            return 'index'
+          }
+
+          // Put Vue SFC `<script>` tag and the corresponding component in one chunk
+          // Reference: https://github.com/vitejs/vite/issues/9213#issuecomment-1200248524
+          if (id.includes('?vue&type=')) {
+            id = id.split('?')[0] ?? id
           }
 
           return `${path.relative(__dirname, id)}`
