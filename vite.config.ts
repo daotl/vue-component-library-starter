@@ -7,8 +7,7 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import type { PluginOption, UserConfig } from 'vite'
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption, type UserConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
@@ -197,17 +196,28 @@ export default defineConfig(({ command }) => ({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'vue-components',
+      // name: 'vue-components',
+      formats: ['es', 'cjs', /*'umd'*/],
     },
     rollupOptions: {
       external: ['vue', 'vue-i18n', 'vue-router'],
       output: {
-        // Specifies id: variableName pairs necessary for external imports in umd/iife bundles.
-        globals: {
-          vue: 'Vue',
-          'vue-i18n': 'VueI18n',
-          'vue-router': 'VueRouter',
+        preserveModules: true,
+        preserveModulesRoot: '.',
+        entryFileNames: ({ name }) => {
+          console.log(name)
+          if (name?.startsWith('node_modules/') || name === '__uno.css') {
+            return '[format]/vendor/' + name.replace(/^node_modules\//, '')
+          }
+
+          return `[format]/${name}.js`
         },
+        // Specifies id: variableName pairs necessary for external imports in umd/iife bundles.
+        // globals: {
+        //   vue: 'Vue',
+        //   'vue-i18n': 'VueI18n',
+        //   'vue-router': 'VueRouter',
+        // },
         // Since we publish our ./src folder, there's no point
         // in bloating sourcemaps with another copy of it.
         sourcemapExcludeSources: true,
