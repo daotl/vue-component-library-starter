@@ -7,7 +7,7 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import { defineConfig, type PluginOption, type UserConfig } from 'vite'
+import { type PluginOption, type UserConfig, defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
@@ -197,7 +197,15 @@ export default defineConfig(({ command }) => ({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       // name: 'vue-components',
-      formats: ['es', 'cjs', /*'umd'*/],
+      formats: [
+        'es',
+        // Temporary disabled for UnoCSS issues:
+        //   error during build:
+        //   Error: [unocss] does not found CSS placeholder in the generated chunks
+        // 'cjs',
+        // Not needed for now
+        // 'umd',
+      ],
     },
     rollupOptions: {
       external: ['vue', 'vue-i18n', 'vue-router'],
@@ -206,7 +214,7 @@ export default defineConfig(({ command }) => ({
         preserveModulesRoot: '.',
         entryFileNames: ({ name }: { name: string }): string => {
           if (name?.startsWith('node_modules/') || name === '__uno.css') {
-            return '[format]/vendor/' + name.replace(/^node_modules\//, '')
+            return `[format]/vendor/${name.replace(/^node_modules\//, '')}`
           }
 
           return `[format]/${name}.js`
@@ -227,7 +235,6 @@ export default defineConfig(({ command }) => ({
     target: 'esnext',
     // Leave minification up to applications.
     minify: false,
-    cssCodeSplit: true,
   },
 
   // https://github.com/antfu/vite-ssg
