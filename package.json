@@ -7,8 +7,8 @@
   "prettier": "@daotl/prettier-config",
   "exports": {
     ".": {
-      "require": "./dist/vue-components.cjs",
-      "import": "./dist/vue-components.js"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/es/index.js"
     },
     "./style.css": "./dist/style.css"
   },
