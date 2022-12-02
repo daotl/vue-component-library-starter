@@ -229,7 +229,12 @@ export default defineConfig(({ command }) => ({
           }
 
           // Vite internal / virtual modules / plugins
-          if (/___?vite/.test(id) || id.startsWith('virtual:') || id.includes('plugin-vue:') || id === '/__uno.css') {
+          if (
+            /___?vite/.test(id) ||
+            id.startsWith('virtual:') ||
+            id.includes('plugin-vue:') ||
+            id === '/__uno.css'
+          ) {
             return 'index'
           }
 
