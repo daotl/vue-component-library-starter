@@ -3,7 +3,6 @@ import path from 'node:path'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
-// g pug push
 // import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
