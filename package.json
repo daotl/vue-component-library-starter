@@ -7,12 +7,14 @@
   "prettier": "@daotl/prettier-config",
   "exports": {
     ".": {
-      "import": "./dist/es/src/index.js"
+      "require": "./dist/vue-components.cjs",
+      "import": "./dist/vue-components.js"
     },
     "./style.css": "./dist/style.css"
   },
-  "module": "./dist/es/src/index.js",
-  "types": "./dist/types/src/index.d.ts",
+  "main": "./dist/vue-components.cjs",
+  "module": "./dist/vue-components.js",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist",
     "src"

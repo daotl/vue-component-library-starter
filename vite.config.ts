@@ -3,6 +3,7 @@ import path from 'node:path'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
+// import type { PreRenderedChunk } from 'rollup'
 // import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -14,7 +15,6 @@ import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
 import Preview from 'vite-plugin-vue-component-preview'
 import Inspector from 'vite-plugin-vue-inspector'
-// import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-vue-markdown'
 import generateSitemap from 'vite-ssg-sitemap'
@@ -202,7 +202,7 @@ export default defineConfig(({ command }) => ({
         // Temporary disabled for UnoCSS issues:
         //   error during build:
         //   Error: [unocss] does not found CSS placeholder in the generated chunks
-        // 'cjs',
+        'cjs',
         // Not needed for now
         // 'umd',
       ],
@@ -210,15 +210,25 @@ export default defineConfig(({ command }) => ({
     rollupOptions: {
       external: ['vue', 'vue-i18n', 'vue-router'],
       output: {
-        preserveModules: true,
-        preserveModulesRoot: '.',
-        entryFileNames: ({ name }: { name: string }): string => {
-          if (name?.includes('node_modules/') || name === '__uno.css') {
-            return `[format]/vendor/${name.replace(/.*node_modules\//, '')}.js`
+        manualChunks(id): string | void {
+          if (id.includes('node_modules') || id === '/__uno.css') {
+            return 'vendor'
           }
 
-          return `[format]/${name}.js`
+          return `${path.relative(__dirname, id)}`
         },
+
+        // `preserveModules` results in modules in `node_modules` also being splitted
+        // preserveModules: true,
+        // preserveModulesRoot: '.',
+        // entryFileNames: ({ name }: PreRenderedChunk): string => {
+        //   if (name?.includes('node_modules/') || name === '__uno.css') {
+        //     return `[format]/vendor/${name.replace(/.*node_modules\//, '')}.js`
+        //   }
+
+        //   return `[format]/${name}.js`
+        // },
+
         // Specifies id: variableName pairs necessary for external imports in umd/iife bundles.
         // globals: {
         //   vue: 'Vue',
