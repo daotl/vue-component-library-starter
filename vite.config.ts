@@ -47,9 +47,9 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           'vue/macros',
           '@vueuse/head',
           '@vueuse/core',
-          // auto import Element Plus functions
-          // resolvers: [ElementPlusResolver()],
         ],
+        // auto import Element Plus functions
+        // resolvers: [ElementPlusResolver()],
         dts: 'src/types/auto-imports.d.ts',
         dirs: ['src/composables', 'src/store'],
         vueTemplate: true,
