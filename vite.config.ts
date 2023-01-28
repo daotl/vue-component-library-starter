@@ -1,15 +1,20 @@
 import path from 'node:path'
 
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
-// import Shiki from 'markdown-it-shiki'
+// g pug push
+import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 // Cannot use this for UI libraries, or code of element-plus components will be included in the build output
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
+// Cannot find module:
+// import VueMacros from 'unplugin-vue-macros/vite'
+// Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
+// import VueMacros from 'unplugin-vue-macros'
 import { type PluginOption, type UserConfig, defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
@@ -37,6 +42,14 @@ export const commonConfig: UserConfig = {
 export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   return (
     [
+      // VueMacros.vite({
+      //   plugins: {
+      //     vue: Vue({
+      //       include: [/\.vue$/, /\.md$/],
+      //       reactivityTransform: true,
+      //     }),
+      //   },
+      // }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
@@ -50,7 +63,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
         // auto import Element Plus functions
         // resolvers: [ElementPlusResolver()],
         dts: 'src/types/auto-imports.d.ts',
-        dirs: ['src/composables', 'src/store'],
+        dirs: ['src/composables', 'src/stores'],
         vueTemplate: true,
       }),
 
@@ -84,12 +97,12 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           // https://prismjs.com/
           // Temporarily disabled for error in Storybook:
           // See: https://github.com/storybookjs/storybook/issues/11587#issuecomment-1310017216
-          // md.use(Shiki, {
-          //   theme: {
-          //     light: 'vitesse-light',
-          //     dark: 'vitesse-dark',
-          //   },
-          // })
+          md.use(Shiki, {
+            theme: {
+              light: 'vitesse-light',
+              dark: 'vitesse-dark',
+            },
+          })
           md.use(LinkAttributes, {
             matcher: (link: string) => /^https?:\/\//.test(link),
             attrs: {
@@ -139,12 +152,15 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           // https://github.com/webfansplz/vite-plugin-vue-inspector
           Inspector({
             enabled: false,
+            toggleButtonVisibility: 'never',
+            toggleComboKey: 'control-alt-i',
           }),
         ] as PluginOption[])
       : [],
   )
 }
 
+// https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
 export default defineConfig(({ command }) => ({
   ...commonConfig,
 
@@ -158,6 +174,7 @@ export default defineConfig(({ command }) => ({
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
+      fullInstall: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
 
