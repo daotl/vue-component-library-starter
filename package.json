@@ -20,12 +20,12 @@
     "src"
   ],
   "scripts": {
-    "build": "vite build",
-    "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
     "storybook": "storybook dev",
     "storybook:build": "storybook build",
+    "build": "vite build",
+    "build:demo": "vite-ssg build",
+    "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
     "pub": "npm run lint && npm run build && npm publish --access public",
-    "build-demo": "vite-ssg build",
     "lint": "npm run eslint && npm run stylelint",
     "lint:fix": "npm run eslint:fix && npm run stylelint:fix",
     "eslint": "eslint .",
