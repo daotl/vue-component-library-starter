@@ -10,12 +10,19 @@
       "vite-plugin-pages/client",
       "vite-plugin-vue-component-preview/client",
       "vite-plugin-vue-layouts/client",
-      "vite-plugin-pwa/client"
+      "vite-plugin-pwa/client",
+      "unplugin-vue-macros/macros-global"
     ],
     "paths": {
       "~/*": ["src/*"]
     }
   },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-model",
+      "@vue-macros/volar/define-slots"
+    ]
+  },
   "include": ["./**/*.ts", "./**/*.vue", "./.storybook/*.ts"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "cypress"]
 }

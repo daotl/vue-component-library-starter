@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 // g pug push
@@ -8,6 +8,9 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+// Cannot find module:
+// import VueMacros from 'unplugin-vue-macros/vite'
+import VueMacros from 'unplugin-vue-macros'
 import { type PluginOption, type UserConfig, defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
@@ -35,6 +38,14 @@ export const commonConfig: UserConfig = {
 export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   return (
     [
+      VueMacros.vite({
+        plugins: {
+          vue: Vue({
+            include: [/\.vue$/, /\.md$/],
+            reactivityTransform: true,
+          }),
+        },
+      }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
@@ -127,12 +138,15 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           // https://github.com/webfansplz/vite-plugin-vue-inspector
           Inspector({
             enabled: false,
+            toggleButtonVisibility: 'never',
+            toggleComboKey: 'control-alt-i',
           }),
         ] as PluginOption[])
       : [],
   )
 }
 
+    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
 export default defineConfig(({ command }) => ({
   ...commonConfig,
 
@@ -146,6 +160,7 @@ export default defineConfig(({ command }) => ({
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
+      fullInstall: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
 
