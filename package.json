@@ -37,7 +37,7 @@
     "test": "vitest",
     "test:e2e": "cypress open",
     "test:unit": "vitest",
-    "typecheck": "vue-tsc --noEmit",
+    "typecheck": "rimraf node_modules/.pnpm/@types+react* && vue-tsc --noEmit",
     "up": "taze major -I"
   },
   "dependencies": {
@@ -69,6 +69,7 @@
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@types/lodash-es": "^4.17.6",
     "@types/markdown-it-link-attributes": "^3.0.1",
+    "@types/node": "^18.11.18",
     "@types/nprogress": "^0.2.0",
     "@unocss/preset-attributify": "^0.49.1",
     "@unocss/preset-icons": "^0.49.1",
@@ -96,6 +97,7 @@
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rimraf": "^4.1.2",
     "shiki": "^0.13.0",
     "storybook": "7.0.0-beta.36",
     "stylelint": "^14.16.1",
