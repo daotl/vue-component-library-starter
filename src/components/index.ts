@@ -1,4 +1,4 @@
-import Counter from './Counter.vue'
-import Footer from './Footer.vue'
+import Counter from './TheCounter.vue'
+import Footer from './TheFooter.vue'
 
 export { Counter, Footer }

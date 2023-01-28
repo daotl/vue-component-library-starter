@@ -10,7 +10,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 // Cannot find module:
 // import VueMacros from 'unplugin-vue-macros/vite'
-import VueMacros from 'unplugin-vue-macros'
+// Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
+// import VueMacros from 'unplugin-vue-macros'
 import { type PluginOption, type UserConfig, defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
@@ -38,14 +39,14 @@ export const commonConfig: UserConfig = {
 export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   return (
     [
-      VueMacros.vite({
-        plugins: {
-          vue: Vue({
-            include: [/\.vue$/, /\.md$/],
-            reactivityTransform: true,
-          }),
-        },
-      }),
+      // VueMacros.vite({
+      //   plugins: {
+      //     vue: Vue({
+      //       include: [/\.vue$/, /\.md$/],
+      //       reactivityTransform: true,
+      //     }),
+      //   },
+      // }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
@@ -57,7 +58,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           '@vueuse/core',
         ],
         dts: 'src/types/auto-imports.d.ts',
-        dirs: ['src/composables', 'src/store'],
+        dirs: ['src/composables', 'src/stores'],
         vueTemplate: true,
       }),
 
@@ -146,7 +147,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   )
 }
 
-    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
+// https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
 export default defineConfig(({ command }) => ({
   ...commonConfig,
 

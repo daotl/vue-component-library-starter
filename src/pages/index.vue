@@ -1,7 +1,8 @@
 <script setup lang="ts">
-defineOptions({
-  name: 'IndexPage',
-})
+// Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
+// defineOptions({
+//   name: 'IndexPage',
+// })
 const user = useUserStore()
 const name = $ref(user.savedName)
 
