@@ -9,7 +9,9 @@ import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-import VueMacros from 'unplugin-vue-macros/vite'
+// Cannot find module:
+// import VueMacros from 'unplugin-vue-macros/vite'
+import VueMacros from 'unplugin-vue-macros'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
@@ -33,8 +35,7 @@ export default defineConfig({
   plugins: [
     Preview(),
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    VueMacros({
+    VueMacros.vite({
       plugins: {
         vue: Vue({
           include: [/\.vue$/, /\.md$/],
