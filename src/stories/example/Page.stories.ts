@@ -15,7 +15,7 @@ const Template: Story = (args) => ({
 
   setup() {
     // Story args can be mapped to keys in the returned object
-    return { user: args.user as Record<string, unknown> }
+    return { user: args['user'] as Record<string, unknown> }
   },
   // Then, those values can be accessed directly in the template
   template: '<my-page :user="user" />',
