@@ -64,13 +64,12 @@ export default defineConfig({
       ],
       // auto import Element Plus functions
       resolvers: [ElementPlusResolver()],
-      dts: 'src/auto-imports.d.ts',
+      dts: 'src/types/auto-imports.d.ts',
       dirs: ['src/composables', 'src/stores'],
       vueTemplate: true,
     }),
 
     // https://github.com/antfu/unplugin-vue-components
-
     Components({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
