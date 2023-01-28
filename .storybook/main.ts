@@ -1,4 +1,5 @@
-import type { StorybookConfig } from '@storybook/builder-vite'
+import type { StorybookConfig } from '@storybook/vue3-vite'
+import { mergeConfig } from 'vite'
 
 import { commonConfig, commonPlugins } from '../vite.config'
 
@@ -18,19 +19,11 @@ const config: StorybookConfig = {
   // },
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   viteFinal(config /* , { configType } */) {
-    return {
-      ...commonConfig,
-      ...config,
+    return mergeConfig(config, {
       resolve: {
         ...commonConfig.resolve,
-        ...config.resolve,
-        alias: {
-          ...commonConfig.resolve?.alias,
-          ...config.resolve?.alias,
-        },
         dedupe: [
           ...(commonConfig.resolve?.dedupe ?? []),
-          ...(config.resolve?.dedupe || []),
           // Workaround for: https://github.com/storybookjs/storybook/issues/10887#issuecomment-901109891
           '@storybook/client-api',
           // Workaround for MDX error because React 16&17 are both in dependency tree causing conflict.
@@ -38,8 +31,8 @@ const config: StorybookConfig = {
           'react-dom',
         ],
       },
-      plugins: [...commonPlugins('serve'), ...(config.plugins ?? [])],
-    }
+      plugins: commonPlugins('serve'),
+    })
   },
 }
 

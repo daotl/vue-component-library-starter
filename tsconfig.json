@@ -11,8 +11,8 @@
       "vite-plugin-vue-component-preview/client",
       "vite-plugin-vue-layouts/client",
       "vite-plugin-pwa/client",
-      "unplugin-vue-macros/macros-global",
-      "element-plus/global"
+      "element-plus/global",
+      "unplugin-vue-macros/macros-global"
     ],
     "paths": {
       "~/*": ["src/*"]
