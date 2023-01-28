@@ -1,6 +1,6 @@
 import path from 'node:path'
 
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
@@ -9,12 +9,13 @@ import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
 import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
 import Preview from 'vite-plugin-vue-component-preview'
-// import Inspector from 'vite-plugin-vue-inspector'
+import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-vue-markdown'
 import generateSitemap from 'vite-ssg-sitemap'
@@ -32,9 +33,14 @@ export default defineConfig({
   plugins: [
     Preview(),
 
-    Vue({
-      include: [/\.vue$/, /\.md$/],
-      reactivityTransform: true,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    VueMacros({
+      plugins: {
+        vue: Vue({
+          include: [/\.vue$/, /\.md$/],
+          reactivityTransform: true,
+        }),
+      },
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
@@ -57,8 +63,8 @@ export default defineConfig({
       ],
       // auto import Element Plus functions
       resolvers: [ElementPlusResolver()],
-      dts: 'src/types/auto-imports.d.ts',
-      dirs: ['src/composables', 'src/store'],
+      dts: 'src/auto-imports.d.ts',
+      dirs: ['src/composables', 'src/stores'],
       vueTemplate: true,
     }),
 
@@ -136,10 +142,11 @@ export default defineConfig({
       },
     }),
 
-    // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
+    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
+      fullInstall: true,
       include: [path.resolve(__dirname, 'locales/**')],
     }),
 
@@ -148,15 +155,10 @@ export default defineConfig({
     Inspect(),
 
     // https://github.com/webfansplz/vite-plugin-vue-inspector
-    /* Disable for now for the issue:
-      import { parse as babelParse, traverse as babelTraverse } from "@babel/core";
-                                    ^^^^^^^^
-      SyntaxError: Named export 'traverse' not found. The requested module '@babel/core' is a CommonJS module, which may not support all module.exports as named exports.
-      CommonJS modules can always be imported via the default export, for example using:
-    */
-    // Inspector({
-    //   enabled: false,
-    // }),
+    Inspector({
+      toggleButtonVisibility: 'never',
+      toggleComboKey: 'control-alt-i',
+    }),
   ],
 
   // https://github.com/vitest-dev/vitest
