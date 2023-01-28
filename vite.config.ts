@@ -4,7 +4,7 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 // g pug push
-// import Shiki from 'markdown-it-shiki'
+import Shiki from 'markdown-it-shiki'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -84,12 +84,12 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           // https://prismjs.com/
           // Temporarily disabled for error in Storybook:
           // See: https://github.com/storybookjs/storybook/issues/11587#issuecomment-1310017216
-          // md.use(Shiki, {
-          //   theme: {
-          //     light: 'vitesse-light',
-          //     dark: 'vitesse-dark',
-          //   },
-          // })
+          md.use(Shiki, {
+            theme: {
+              light: 'vitesse-light',
+              dark: 'vitesse-dark',
+            },
+          })
           md.use(LinkAttributes, {
             matcher: (link: string) => /^https?:\/\//.test(link),
             attrs: {
