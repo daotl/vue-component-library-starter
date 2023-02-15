@@ -82,6 +82,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       }),
 
       // https://github.com/element-plus/unplugin-element-plus/
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       ElementPlus(),
 
       // https://github.com/unocss/unocss
