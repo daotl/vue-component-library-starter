@@ -4,7 +4,6 @@
   "version": "0.0.0-alpha.0",
   "private": true,
   "packageManager": "pnpm@7.26.1",
-  "prettier": "@daotl/prettier-config",
   "exports": {
     ".": {
       "require": "./dist/vue-components.cjs",
@@ -54,8 +53,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@daotl/eslint-config-vue": "^0.3.32",
-    "@daotl/prettier-config": "^0.1.4",
+    "@daotl/eslint-config-vue": "^1.0.0-alpha.5",
     "@daotl/tsconfig": "^0.1.2",
     "@iconify-json/carbon": "^1.1.15",
     "@intlify/unplugin-vue-i18n": "^0.8.2",
@@ -86,6 +84,7 @@
     "dotenv-cli": "^7.0.0",
     "eslint": "^8.34.0",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.10",
     "https-localhost": "^4.7.1",
     "lefthook": "^1.2.9",
@@ -95,7 +94,6 @@
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
     "postcss-syntax": "^0.36.2",
-    "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^4.1.2",
