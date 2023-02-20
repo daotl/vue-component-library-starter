@@ -2,7 +2,6 @@
   "type": "module",
   "private": true,
   "packageManager": "pnpm@7.26.1",
-  "prettier": "@daotl/prettier-config",
   "scripts": {
     "build": "vite-ssg build",
     "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
@@ -33,8 +32,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@daotl/eslint-config-vue": "^0.3.32",
-    "@daotl/prettier-config": "^0.1.4",
+    "@daotl/eslint-config-vue": "^1.0.0-alpha.5",
     "@daotl/tsconfig": "^0.1.2",
     "@iconify-json/carbon": "^1.1.15",
     "@intlify/unplugin-vue-i18n": "^0.8.2",
@@ -51,6 +49,7 @@
     "dotenv-cli": "^7.0.0",
     "eslint": "^8.34.0",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "https-localhost": "^4.7.1",
     "lefthook": "^1.2.9",
     "markdown-it-link-attributes": "^4.0.1",
@@ -59,7 +58,6 @@
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
     "postcss-syntax": "^0.36.2",
-    "prettier": "^2.8.4",
     "sass": "^1.58.1",
     "shiki": "^0.14.1",
     "stylelint": "^15.1.0",
