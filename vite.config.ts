@@ -132,17 +132,17 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   ).concat(
     command === 'serve'
       ? ([
-          // https://github.com/antfu/vite-plugin-inspect
-          // Visit http://localhost:3333/__inspect/ to see the inspector
-          Inspect(),
+        // https://github.com/antfu/vite-plugin-inspect
+        // Visit http://localhost:3333/__inspect/ to see the inspector
+        Inspect(),
 
-          // https://github.com/webfansplz/vite-plugin-vue-inspector
-          Inspector({
-            enabled: false,
-            toggleButtonVisibility: 'never',
-            toggleComboKey: 'control-alt-i',
-          }),
-        ] as PluginOption[])
+        // https://github.com/webfansplz/vite-plugin-vue-inspector
+        Inspector({
+          enabled: false,
+          toggleButtonVisibility: 'never',
+          toggleComboKey: 'control-alt-i',
+        }),
+      ] as PluginOption[])
       : [],
   )
 }
@@ -174,25 +174,25 @@ export default defineConfig(({ command }) => ({
   ].concat(
     command === 'serve'
       ? [
-          // Disabled for building the library for not generating sourcemap
-          Preview(),
+        // Disabled for building the library for not generating sourcemap
+        Preview(),
 
-          Pages({
-            extensions: ['vue', 'md'],
-          }),
+        Pages({
+          extensions: ['vue', 'md'],
+        }),
 
-          // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-          Layouts(),
-        ]
+        // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+        Layouts(),
+      ]
       : [
-          // https://github.com/qmhc/vite-plugin-dts
-          dts({
-            outputDir: 'dist/types',
-            include: 'src',
-            // rollupTypes: true,
-            skipDiagnostics: true, // `vue-tsc` already checks types
-          }),
-        ],
+        // https://github.com/qmhc/vite-plugin-dts
+        dts({
+          outputDir: 'dist/types',
+          include: 'src',
+          // rollupTypes: true,
+          skipDiagnostics: true, // `vue-tsc` already checks types
+        }),
+      ],
   ),
 
   optimizeDeps: {
@@ -233,10 +233,10 @@ export default defineConfig(({ command }) => ({
 
           // Vite internal / virtual modules / plugins
           if (
-            /___?vite/.test(id) ||
-            id.startsWith('virtual:') ||
-            id.includes('plugin-vue:') ||
-            id === '/__uno.css'
+            /___?vite/.test(id)
+            || id.startsWith('virtual:')
+            || id.includes('plugin-vue:')
+            || id === '/__uno.css'
           ) {
             return 'index'
           }
