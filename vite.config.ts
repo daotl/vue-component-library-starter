@@ -1,5 +1,5 @@
 import path from 'node:path'
-
+import Preview from 'vite-plugin-vue-component-preview'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
@@ -14,10 +14,10 @@ import Components from 'unplugin-vue-components/vite'
 // import VueMacros from 'unplugin-vue-macros'
 import { type PluginOption, type UserConfig, defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import VueMacros from 'unplugin-vue-macros'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
-import Preview from 'vite-plugin-vue-component-preview'
 import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-vue-markdown'
@@ -39,14 +39,15 @@ export const commonConfig: UserConfig = {
 export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   return (
     [
-      // VueMacros.vite({
-      //   plugins: {
-      //     vue: Vue({
-      //       include: [/\.vue$/, /\.md$/],
-      //       reactivityTransform: true,
-      //     }),
-      //   },
-      // }),
+      VueMacros.vite({
+        plugins: {
+          vue: Vue({
+            include: [/\.vue$/, /\.md$/],
+            reactivityTransform: true,
+          }),
+        },
+      }),
+
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
