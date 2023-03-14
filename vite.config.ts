@@ -1,5 +1,5 @@
 import path from 'node:path'
-
+import Preview from 'vite-plugin-vue-component-preview'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
@@ -15,12 +15,16 @@ import Components from 'unplugin-vue-components/vite'
 // import VueMacros from 'unplugin-vue-macros/vite'
 // Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
 // import VueMacros from 'unplugin-vue-macros'
-import { type PluginOption, type UserConfig, defineConfig } from 'vite'
+import {
+  type PluginOption,
+  type UserConfig,
+  type Plugin,
+  defineConfig,
+} from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
-import Preview from 'vite-plugin-vue-component-preview'
 import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-vue-markdown'
@@ -50,6 +54,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       //     }),
       //   },
       // }),
+
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
@@ -189,7 +194,7 @@ export default defineConfig(({ command }) => ({
     command === 'serve'
       ? [
         // Disabled for building the library for not generating sourcemap
-        Preview(),
+        (Preview as unknown as { default: () => Plugin }).default(),
 
         Pages({
           extensions: ['vue', 'md'],
