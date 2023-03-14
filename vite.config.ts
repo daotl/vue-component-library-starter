@@ -87,8 +87,8 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       }),
 
       // https://github.com/element-plus/unplugin-element-plus/
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-      ElementPlus(),
+
+      ElementPlus({}),
 
       // https://github.com/unocss/unocss
       // see unocss.config.ts for config
