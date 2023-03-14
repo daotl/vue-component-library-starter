@@ -12,9 +12,13 @@ import Components from 'unplugin-vue-components/vite'
 // import VueMacros from 'unplugin-vue-macros/vite'
 // Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
 // import VueMacros from 'unplugin-vue-macros'
-import { type PluginOption, type UserConfig, defineConfig } from 'vite'
+import {
+  type PluginOption,
+  type UserConfig,
+  type Plugin,
+  defineConfig,
+} from 'vite'
 import dts from 'vite-plugin-dts'
-import VueMacros from 'unplugin-vue-macros'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -39,14 +43,14 @@ export const commonConfig: UserConfig = {
 export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   return (
     [
-      VueMacros.vite({
-        plugins: {
-          vue: Vue({
-            include: [/\.vue$/, /\.md$/],
-            reactivityTransform: true,
-          }),
-        },
-      }),
+      // VueMacros.vite({
+      //   plugins: {
+      //     vue: Vue({
+      //       include: [/\.vue$/, /\.md$/],
+      //       reactivityTransform: true,
+      //     }),
+      //   },
+      // }),
 
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
@@ -176,7 +180,7 @@ export default defineConfig(({ command }) => ({
     command === 'serve'
       ? [
         // Disabled for building the library for not generating sourcemap
-        Preview(),
+        (Preview as unknown as { default: () => Plugin }).default(),
 
         Pages({
           extensions: ['vue', 'md'],
