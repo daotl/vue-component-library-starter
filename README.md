@@ -74,13 +74,13 @@ And you will see the generated file in `dist` that ready to be served.
 
 - 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
 
-- 🤙🏻 [Reactivity Transform](https://vuejs.org/guide/extras/reactivity-transform.html) enabled
-
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import) - use Composition API and others directly
 
 - 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
 
 - 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters)
+
+- 🔤 [Webfont self-hosting](https://github.com/feat-agency/vite-plugin-webfont-dl)
 
 - 🦾 TypeScript, of course
 
@@ -121,6 +121,7 @@ And you will see the generated file in `dist` that ready to be served.
 - [`vite-ssg-sitemap`](https://github.com/jbaubree/vite-ssg-sitemap) - Sitemap generator
 - [`@vueuse/head`](https://github.com/vueuse/head) - manipulate document head reactively
 - [`vite-plugin-vue-inspector`](https://github.com/webfansplz/vite-plugin-vue-inspector) - jump to local IDE source code while click the element of browser automatically
+- [`vite-plugin-webfont-dl`](https://github.com/feat-agency/vite-plugin-webfont-dl) - Zero-config webfont (Google Fonts) downloader and injector to improve website's performance.
 
 ### Coding Style
 

@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import { ElButton } from 'element-plus'
 // Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
 // defineOptions({
 //   name: 'IndexPage',
 // })
 const user = useUserStore()
-const name = $ref(user.savedName)
+const name = ref<string>(user.savedName)
 
 const router = useRouter()
-const go = (): void => {
-  if (name) {
-    void router.push(`/hi/${encodeURIComponent(name)}`)
+function go() {
+  if (name.value) {
+    void router.push(`/hi/${encodeURIComponent(name.value)}`)
   }
 }
 
@@ -22,11 +23,7 @@ const { t } = useI18n()
       <div i-carbon-campsite inline-block />
     </div>
     <p>
-      <a
-        rel="noreferrer"
-        href="https://github.com/antfu/vitesse"
-        target="_blank"
-      >
+      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
         Vitesse
       </a>
     </p>
@@ -38,16 +35,16 @@ const { t } = useI18n()
 
     <TheInput
       v-model="name"
-      placeholder="What's your name?"
+      :placeholder="t('intro.whats-your-name')"
       autocomplete="false"
       @keydown.enter="go"
     />
     <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
 
     <div>
-      <el-button :disabled="!name" @click="go">
+      <ElButton :disabled="!name" @click="go">
         {{ t('button.go') }}
-      </el-button>
+      </ElButton>
     </div>
 
     <Counter :initial="0" />

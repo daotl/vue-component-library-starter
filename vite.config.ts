@@ -26,6 +26,8 @@ import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
 import Inspector from 'vite-plugin-vue-inspector'
+
+import WebfontDownload from 'vite-plugin-webfont-dl'
 import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-vue-markdown'
 import generateSitemap from 'vite-ssg-sitemap'
@@ -46,7 +48,7 @@ export const commonConfig: UserConfig = {
 export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   return (
     [
-      // VueMacros.vite({
+      // VueMacros({
       //   plugins: {
       //     vue: Vue({
       //       include: [/\.vue$/, /\.md$/],
@@ -54,7 +56,12 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       //     }),
       //   },
       // }),
-
+      // https://github.com/hannoeru/vite-plugin-pages
+      Pages({
+        extensions: ['vue', 'md'],
+      }),
+      // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+      Layouts(),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
@@ -87,7 +94,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       }),
 
       // https://github.com/element-plus/unplugin-element-plus/
-
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       ElementPlus({}),
 
       // https://github.com/unocss/unocss
@@ -188,7 +195,8 @@ export default defineConfig(({ command }) => ({
       include: [/\.vue$/, /\.md$/],
       reactivityTransform: true,
     }),
-
+    // https://github.com/feat-agency/vite-plugin-webfont-dl
+    WebfontDownload(),
     ...commonPlugins(command),
   ].concat(
     command === 'serve'
@@ -303,7 +311,10 @@ export default defineConfig(({ command }) => ({
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
-    onFinished(): void {
+    crittersOptions: {
+      reduceInlineStyles: false,
+    },
+    onFinished() {
       generateSitemap()
     },
   },

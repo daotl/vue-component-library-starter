@@ -3,16 +3,23 @@
 // const { modelValue } = defineModel<{
 //   modelValue: string
 // }>()
-defineProps<{
+
+const prop = defineProps<{
   modelValue: string
 }>()
-defineEmits(['update:modelValue'])
+
+const emit = defineEmits(['update:modelValue'])
+
+const inputValue = ref(prop.modelValue)
+const onChange = () => {
+  emit('update:modelValue', inputValue.value)
+}
 </script>
 
 <template>
   <input
     id="input"
-    :value="modelValue"
+    v-model="inputValue"
     type="text"
     v-bind="$attrs"
     p="x-4 y-2"
@@ -21,5 +28,6 @@ defineEmits(['update:modelValue'])
     bg="transparent"
     border="~ rounded gray-200 dark:gray-700"
     outline="none active:none"
+    @change="onChange"
   >
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ElButton } from 'element-plus'
+
 const props = defineProps<{ name: string }>()
 const router = useRouter()
 const user = useUserStore()
@@ -24,7 +26,7 @@ watchEffect(() => {
     </p>
 
     <template v-if="user.otherNames.length">
-      <p text-sm mt-4>
+      <p mt-4 text-sm>
         <span opacity-75>{{ t('intro.aka') }}:</span>
         <ul>
           <li v-for="otherName in user.otherNames" :key="otherName">
@@ -38,9 +40,9 @@ watchEffect(() => {
     </template>
 
     <div>
-      <el-button @click="router.back()">
+      <ElButton @click="router.back()">
         {{ t('button.back') }}
-      </el-button>
+      </ElButton>
     </div>
   </div>
 </template>
