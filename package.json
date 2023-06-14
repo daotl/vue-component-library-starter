@@ -6,8 +6,14 @@
   "packageManager": "pnpm@8.5.1",
   "exports": {
     ".": {
-      "require": "./dist/vue-components.cjs",
-      "import": "./dist/vue-components.js"
+      "require": {
+        "default": "./dist/vue-components.cjs",
+        "types": "./dist/types/index.d.cts"
+      },
+      "import": {
+        "default": "./dist/vue-components.js",
+        "types": "./dist/types/index.d.ts"
+      }
     },
     "./style.css": "./dist/style.css"
   },
@@ -21,7 +27,7 @@
   "scripts": {
     "storybook": "storybook dev",
     "storybook:build": "storybook build",
-    "build": "vite build",
+    "build": "vite build && gcp './dist/types/**/*.d.ts' {p}{n}.cts",
     "build:demo": "vite-ssg build",
     "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
     "pub": "npm run lint && npm run build && npm publish --access public",
@@ -90,6 +96,7 @@
     "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.12",
+    "glops": "^0.0.4",
     "https-localhost": "^4.7.1",
     "lefthook": "^1.4.1",
     "markdown-it-link-attributes": "^4.0.1",
