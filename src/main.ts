@@ -12,7 +12,7 @@ import { ViteSSG } from 'vite-ssg'
 import generatedRoutes from '~pages'
 
 import App from './App.vue'
-import type { UserModule } from './types'
+import type { UserModule } from './types.js'
 
 const routes = setupLayouts(generatedRoutes)
 
