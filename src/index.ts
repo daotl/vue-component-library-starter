@@ -1,3 +1,3 @@
-import './main-lib'
+import './main-lib.js'
 
-export * from './components'
+export * from './components/index.js'
