@@ -17,8 +17,6 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
 import Shiki from 'markdown-it-shiki'
-
-// @ts-expect-error failed to resolve types
 import VueMacros from 'unplugin-vue-macros/vite'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -36,7 +34,6 @@ export default defineConfig({
   },
 
   plugins: [
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     VueMacros({
       plugins: {
         vue: Vue({
