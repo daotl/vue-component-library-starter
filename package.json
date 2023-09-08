@@ -25,6 +25,9 @@
     "src"
   ],
   "scripts": {
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview",
     "storybook": "storybook dev",
     "storybook:build": "storybook build",
     "build": "vite build && gcp './dist/types/**/*.d.ts' {p}{n}.cts",
@@ -47,6 +50,7 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
+    "@iconify/vue": "^4.1.1",
     "@unhead/vue": "^1.5.2",
     "@unocss/reset": "^0.55.7",
     "@vueuse/core": "^10.4.1",
@@ -64,6 +68,7 @@
     "@babel/core": "^7.22.15",
     "@daotl/eslint-config-vue": "^1.0.0-alpha.6",
     "@daotl/tsconfig": "^0.1.2",
+    "@histoire/plugin-vue": "^0.17.1",
     "@iconify-json/carbon": "^1.1.21",
     "@intlify/unplugin-vue-i18n": "^1.0.1",
     "@mdx-js/react": "^2.3.0",
@@ -98,6 +103,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-storybook": "^0.6.13",
     "glops": "^0.0.4",
+    "histoire": "^0.17.0",
     "https-localhost": "^4.7.1",
     "lefthook": "^1.4.10",
     "markdown-it-link-attributes": "^4.0.1",

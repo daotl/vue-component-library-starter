@@ -95,7 +95,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       }),
 
       // https://github.com/element-plus/unplugin-element-plus/
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
       ElementPlus({}),
 
       // https://github.com/unocss/unocss
@@ -173,6 +173,9 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
 // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
 export default defineConfig(({ command }) => ({
   ...commonConfig,
+  viteIgnorePlugins: [
+    'vite-plugin-example',
+  ],
 
   plugins: [
     // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n

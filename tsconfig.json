@@ -38,6 +38,6 @@
       "@vue-macros/volar/define-slots"
     ]
   },
-  "include": ["./**/*.ts", "./**/*.vue", "./.storybook/*.ts"],
+  "include": ["./**/*.ts", "./**/*.vue", "./.storybook/*.ts", "env.d.ts"],
   "exclude": ["dist", "node_modules", "cypress"]
 }
