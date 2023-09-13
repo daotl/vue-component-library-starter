@@ -95,7 +95,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       }),
 
       // https://github.com/element-plus/unplugin-element-plus/
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+
       ElementPlus({}),
 
       // https://github.com/unocss/unocss
@@ -211,10 +211,9 @@ export default defineConfig(({ command }) => ({
       : [
         // https://github.com/qmhc/vite-plugin-dts
         dts({
-          outputDir: 'dist/types',
+          outDir: 'dist/types',
           include: 'src',
           // rollupTypes: true,
-          skipDiagnostics: true, // `vue-tsc` already checks types
         }),
       ],
   ),
