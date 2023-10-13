@@ -1,26 +1,26 @@
 import path from 'node:path'
-import { defineConfig } from 'vite'
+
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 // import Preview from 'vite-plugin-vue-component-preview'
 import Vue from '@vitejs/plugin-vue'
+import LinkAttributes from 'markdown-it-link-attributes'
+import Shiki from 'markdown-it-shikiji'
+import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 // Cannot find module:
-// import VueMacros from 'unplugin-vue-macros/vite'
+import VueMacros from 'unplugin-vue-macros/vite'
+import Markdown from 'unplugin-vue-markdown/vite'
+import { defineConfig } from 'vite'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
-import Inspector from 'vite-plugin-vue-inspector'
 import { VitePWA } from 'vite-plugin-pwa'
-import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import LinkAttributes from 'markdown-it-link-attributes'
-import Unocss from 'unocss/vite'
-import Shiki from 'markdown-it-shiki'
-import VueMacros from 'unplugin-vue-macros/vite'
-import WebfontDownload from 'vite-plugin-webfont-dl'
+import Inspector from 'vite-plugin-vue-inspector'
 import Layouts from 'vite-plugin-vue-layouts'
-import Markdown from 'vite-plugin-vue-markdown'
+import WebfontDownload from 'vite-plugin-webfont-dl'
 import generateSitemap from 'vite-ssg-sitemap'
 
 export default defineConfig({
@@ -82,26 +82,19 @@ export default defineConfig({
 
     // https://github.com/element-plus/unplugin-element-plus/
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    // eslint-disable-next-line ts/no-unsafe-call
     ElementPlus(),
 
     // https://github.com/unocss/unocss
     // see unocss.config.ts for config
     Unocss(),
 
-    // https://github.com/antfu/vite-plugin-vue-markdown
+    // https://github.com/unplugin/unplugin-vue-markdown
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
     Markdown({
       wrapperClasses: 'prose prose-sm m-auto text-left',
       headEnabled: true,
-      markdownItSetup(md) {
-        // https://prismjs.com/
-        md.use(Shiki, {
-          theme: {
-            light: 'vitesse-light',
-            dark: 'vitesse-dark',
-          },
-        })
+      async markdownItSetup(md) {
         md.use(LinkAttributes, {
           matcher: (link: string) => /^https?:\/\//.test(link),
           attrs: {
@@ -109,6 +102,13 @@ export default defineConfig({
             rel: 'noopener',
           },
         })
+        md.use(await Shiki({
+          defaultColor: false,
+          themes: {
+            light: 'vitesse-light',
+            dark: 'vitesse-dark',
+          },
+        }))
       },
     }),
 
