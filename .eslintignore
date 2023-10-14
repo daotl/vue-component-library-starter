@@ -1,7 +1,0 @@
-!.storybook
-storybook-static
-src/types/auto-imports.d.ts
-src/types/components.d.ts
-dist
-public
-node_modules

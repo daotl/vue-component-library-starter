@@ -11,7 +11,7 @@ const prop = defineProps<{
 const emit = defineEmits(['update:modelValue'])
 
 const inputValue = ref(prop.modelValue)
-const onChange = () => {
+function onChange() {
   emit('update:modelValue', inputValue.value)
 }
 </script>

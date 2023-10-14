@@ -1,36 +1,32 @@
 import path from 'node:path'
-import Preview from 'vite-plugin-vue-component-preview'
+
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 // import Preview from 'vite-plugin-vue-component-preview'
 import Vue from '@vitejs/plugin-vue'
+import LinkAttributes from 'markdown-it-link-attributes'
+// import Shiki from 'markdown-it-shikiji'
+import Unocss from 'unocss/vite'
 // g pug push
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 // Cannot use this for UI libraries, or code of element-plus components will be included in the build output
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
-// Cannot find module:
-// import VueMacros from 'unplugin-vue-macros/vite'
+import Markdown from 'unplugin-vue-markdown/vite'
 // Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
 // import VueMacros from 'unplugin-vue-macros'
 import {
+  defineConfig,
   type PluginOption,
   type UserConfig,
-  type Plugin,
-  defineConfig,
 } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
 import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
-import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import LinkAttributes from 'markdown-it-link-attributes'
-import Unocss from 'unocss/vite'
-import Shiki from 'markdown-it-shiki'
-
-import WebfontDownload from 'vite-plugin-webfont-dl'
 import Layouts from 'vite-plugin-vue-layouts'
-import Markdown from 'vite-plugin-vue-markdown'
+import WebfontDownload from 'vite-plugin-webfont-dl'
 import generateSitemap from 'vite-ssg-sitemap'
 
 // Common config for both library and Storybook
@@ -102,7 +98,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       // see unocss.config.ts for config
       Unocss(),
 
-      // https://github.com/antfu/vite-plugin-vue-markdown
+      // https://github.com/unplugin/unplugin-vue-markdown
       // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
       Markdown({
         wrapperClasses: 'prose prose-sm m-auto text-left',
@@ -111,12 +107,13 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           // https://prismjs.com/
           // Temporarily disabled for error in Storybook:
           // See: https://github.com/storybookjs/storybook/issues/11587#issuecomment-1310017216
-          md.use(Shiki, {
-            theme: {
-              light: 'vitesse-light',
-              dark: 'vitesse-dark',
-            },
-          })
+          // md.use(await Shiki({
+          //   // defaultColor: false,
+          //   themes: {
+          //     light: 'vitesse-light',
+          //     dark: 'vitesse-dark',
+          //   },
+          // }))
           md.use(LinkAttributes, {
             matcher: (link: string) => /^https?:\/\//.test(link),
             attrs: {
@@ -161,11 +158,11 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       ? ([
         // https://github.com/antfu/vite-plugin-inspect
         // Visit http://localhost:3333/__inspect/ to see the inspector
-        Inspect(),
+          Inspect(),
 
-        // https://github.com/webfansplz/vite-plugin-vue-devtools
-        VueDevTools(),
-      ] as PluginOption[])
+          // https://github.com/webfansplz/vite-plugin-vue-devtools
+          VueDevTools(),
+        ] as PluginOption[])
       : [],
   )
 }
@@ -199,23 +196,23 @@ export default defineConfig(({ command }) => ({
     command === 'serve'
       ? [
         // Disabled for building the library for not generating sourcemap
-        (Preview as unknown as { default: () => Plugin }).default(),
+        // (Preview as unknown as { default: () => Plugin }).default(),
 
-        Pages({
-          extensions: ['vue', 'md'],
-        }),
+          Pages({
+            extensions: ['vue', 'md'],
+          }),
 
-        // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-        Layouts(),
-      ]
+          // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+          Layouts(),
+        ]
       : [
         // https://github.com/qmhc/vite-plugin-dts
-        dts({
-          outDir: 'dist/types',
-          include: 'src',
+          dts({
+            outDir: 'dist/types',
+            include: 'src',
           // rollupTypes: true,
-        }),
-      ],
+          }),
+        ],
   ),
 
   optimizeDeps: {
