@@ -197,7 +197,7 @@ export default defineConfig(({ command }) => ({
           dts({
             // TODO: Vite should use `tsconfig.build.json` as well when it supports configuring
             // See: https://github.com/vitejs/vite/discussions/8483
-            tsconfigPath: 'tsconfig.build.json',
+            // tsconfigPath: 'tsconfig.build.json',
             outDir: 'dist/types',
             include: 'src',
           // rollupTypes: true,
