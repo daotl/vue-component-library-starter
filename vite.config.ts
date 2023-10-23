@@ -4,7 +4,7 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 // import Preview from 'vite-plugin-vue-component-preview'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
-import Shiki from 'markdown-it-shikiji'
+// import Shiki from 'markdown-it-shikiji'
 import Unocss from 'unocss/vite'
 // g pug push
 import AutoImport from 'unplugin-auto-import/vite'
@@ -80,7 +80,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
         dts: 'src/types/components.d.ts',
       }),
 
-      // https://github.com/antfu/unocss
+      // https://github.com/unocss/unocss
       // see uno.config.ts for config
       Unocss(),
 
@@ -89,7 +89,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       Markdown({
         wrapperClasses: 'prose prose-sm m-auto text-left',
         headEnabled: true,
-        async markdownItSetup(md) {
+        markdownItSetup(md) {
           md.use(LinkAttributes, {
             matcher: (link: string) => /^https?:\/\//.test(link),
             attrs: {
@@ -97,13 +97,18 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
               rel: 'noopener',
             },
           })
-          md.use(await Shiki({
-            defaultColor: false,
-            themes: {
-              light: 'vitesse-light',
-              dark: 'vitesse-dark',
-            },
-          }))
+          // Temporarily disabled for error in Storybook:
+          //   ./node_modules/.pnpm/markdown-it-shikiji@0.6.10/node_modules/markdown-it-shikiji/dist/index.mjs:1
+          //   import { getHighlighter, bundledLanguages } from 'shikiji';
+          //   ^^^^^^
+          //   SyntaxError: Cannot use import statement outside a module
+          // md.use(await Shiki({
+          //   defaultColor: false,
+          //   themes: {
+          //     light: 'vitesse-light',
+          //     dark: 'vitesse-dark',
+          //   },
+          // }))
         },
       }),
 
@@ -139,12 +144,9 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   ).concat(
     command === 'serve'
       ? ([
-        // https://github.com/antfu/vite-plugin-inspect
-        // Visit http://localhost:3333/__inspect/ to see the inspector
+          // https://github.com/antfu/vite-plugin-inspect
+          // Visit http://localhost:3333/__inspect/ to see the inspector
           Inspect(),
-
-          // https://github.com/webfansplz/vite-plugin-vue-devtools
-          VueDevTools(),
         ] as PluginOption[])
       : [],
   )
@@ -178,9 +180,11 @@ export default defineConfig(({ command }) => ({
   ].concat(
     command === 'serve'
       ? [
-        // Disabled for building the library for not generating sourcemap
-        // (Preview as unknown as { default: () => Plugin }).default(),
+          // https://github.com/webfansplz/vite-plugin-vue-devtools
+          VueDevTools(),
 
+          // Disabled for building the library for not generating sourcemap
+          // (Preview as unknown as { default: () => Plugin }).default(),
           Pages({
             extensions: ['vue', 'md'],
           }),
@@ -189,7 +193,7 @@ export default defineConfig(({ command }) => ({
           Layouts(),
         ]
       : [
-        // https://github.com/qmhc/vite-plugin-dts
+          // https://github.com/qmhc/vite-plugin-dts
           dts({
             outDir: 'dist/types',
             include: 'src',

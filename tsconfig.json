@@ -37,5 +37,5 @@
     ]
   },
   "include": ["./**/*.ts", "./**/*.vue", "./.storybook/*.ts"],
-  "exclude": ["dist", "node_modules", "cypress"]
+  "exclude": ["./src/stories", "**/*.stories.ts", "cypress", "dist", "node_modules"]
 }

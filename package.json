@@ -79,6 +79,7 @@
     "@types/node": "^20.5.9",
     "@types/nprogress": "^0.2.1",
     "@unocss/eslint-config": "^0.56.5",
+    "@unocss/eslint-plugin": "^0.56.5",
     "@unocss/preset-attributify": "^0.56.5",
     "@unocss/preset-icons": "^0.56.5",
     "@unocss/preset-typography": "^0.56.5",
