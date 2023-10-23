@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url'
 
 import config from '@daotl/eslint-config'
 import { FlatCompat } from '@eslint/eslintrc'
-import parserTs from '@typescript-eslint/parser'
 import unocss from '@unocss/eslint-plugin'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -24,12 +23,6 @@ export default [
   ...compat.extends('plugin:storybook/recommended'),
   {
     files: ['.storybook/**/*.ts', './src/stories/**/*.*', '**/*.stories.ts'],
-    languageOptions: {
-      parser: parserTs,
-      parserOptions: {
-        project: ['./tsconfig.storybook.json'],
-      },
-    },
     rules: {
       'ts/no-unsafe-assignment': 'off',
     },
