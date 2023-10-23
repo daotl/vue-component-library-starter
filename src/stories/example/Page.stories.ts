@@ -3,11 +3,10 @@ import type { Meta, Story } from '@storybook/vue3'
 import * as HeaderStories from './Header.stories'
 import MyPage from './Page.vue'
 
-// eslint-disable-next-line ts/consistent-type-assertions
 export default {
   title: 'Example/Page',
   component: MyPage,
-} as Meta
+} satisfies Meta
 
 const Template: Story = (args) => ({
   // Components used in your story `template` are defined in the `components` object
