@@ -1,7 +1,6 @@
 import path from 'node:path'
 
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
-// import Preview from 'vite-plugin-vue-component-preview'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 // import Shiki from 'markdown-it-shikiji'
