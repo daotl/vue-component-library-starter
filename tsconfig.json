@@ -1,6 +1,7 @@
 {
   "extends": "@daotl/tsconfig/vue.json",
   "compilerOptions": {
+    "composite": true,
     "target": "ESNext",
     "jsx": "preserve",
     "lib": ["DOM", "ESNext"],
@@ -16,7 +17,6 @@
       "vitest",
       "vite/client",
       "vue/ref-macros",
-      "vite-plugin-pages/client",
       "vite-plugin-vue-layouts/client",
       "vite-plugin-pwa/client",
       "element-plus/global",
@@ -34,9 +34,9 @@
   "vueCompilerOptions": {
     "plugins": [
       "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-slots"
+      "@vue-macros/volar/define-props-refs"
     ]
   },
-  "include": ["./**/*.ts", "./**/*.vue", "./.storybook/*.ts"],
-  "exclude": ["dist", "node_modules", "cypress"]
+  "include": ["./.storybook/**/*.ts", "./**/*.ts", "./**/*.vue"],
+  "exclude": ["cypress", "dist", "node_modules"]
 }

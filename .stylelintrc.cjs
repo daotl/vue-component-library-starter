@@ -1,4 +1,8 @@
-const commonExtends = ['stylelint-config-property-sort-order-smacss']
+const commonExtends = [
+  'stylelint-config-html/html',
+  'stylelint-config-html/vue',
+  'stylelint-config-property-sort-order-smacss',
+]
 
 module.exports = {
   extends: commonExtends,
@@ -49,7 +53,7 @@ module.exports = {
     },
     {
       files: 'src/**/*.tsx',
-      customSyntax: '@stylelint/postcss-css-in-js',
+      customSyntax: 'postcss-styled-syntax',
       extends: ['stylelint-config-recommended-scss', ...commonExtends],
     },
   ],

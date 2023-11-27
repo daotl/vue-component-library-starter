@@ -1,7 +1,6 @@
 import path from 'node:path'
 
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
-// import Preview from 'vite-plugin-vue-component-preview'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 // import Shiki from 'markdown-it-shikiji'
@@ -13,6 +12,8 @@ import ElementPlus from 'unplugin-element-plus/vite'
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
 // Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
 // import VueMacros from 'unplugin-vue-macros'
 import {
@@ -22,7 +23,6 @@ import {
 } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
-import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -53,10 +53,14 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       //     }),
       //   },
       // }),
-      // https://github.com/hannoeru/vite-plugin-pages
-      Pages({
-        extensions: ['vue', 'md'],
+
+      // https://github.com/posva/unplugin-vue-router
+      VueRouter({
+        extensions: ['.vue'],
+        exclude: ['**/components/*'],
+        dts: 'src/types/typed-router.d.ts',
       }),
+
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
       // https://github.com/antfu/unplugin-auto-import
@@ -68,6 +72,11 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           'vue/macros',
           '@vueuse/head',
           '@vueuse/core',
+          VueRouterAutoImports,
+          {
+            // add any other imports you were relying on
+            'vue-router/auto': ['useLink'],
+          },
         ],
         // auto import Element Plus functions
         // resolvers: [ElementPlusResolver()],
@@ -91,11 +100,10 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       }),
 
       // https://github.com/element-plus/unplugin-element-plus/
-
       ElementPlus({}),
 
       // https://github.com/unocss/unocss
-      // see unocss.config.ts for config
+      // see uno.config.ts for config
       Unocss(),
 
       // https://github.com/unplugin/unplugin-vue-markdown
@@ -104,16 +112,6 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
         wrapperClasses: 'prose prose-sm m-auto text-left',
         headEnabled: true,
         markdownItSetup(md) {
-          // https://prismjs.com/
-          // Temporarily disabled for error in Storybook:
-          // See: https://github.com/storybookjs/storybook/issues/11587#issuecomment-1310017216
-          // md.use(await Shiki({
-          //   // defaultColor: false,
-          //   themes: {
-          //     light: 'vitesse-light',
-          //     dark: 'vitesse-dark',
-          //   },
-          // }))
           md.use(LinkAttributes, {
             matcher: (link: string) => /^https?:\/\//.test(link),
             attrs: {
@@ -121,6 +119,18 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
               rel: 'noopener',
             },
           })
+          // Temporarily disabled for error in Storybook:
+          //   ./node_modules/.pnpm/markdown-it-shikiji@0.6.10/node_modules/markdown-it-shikiji/dist/index.mjs:1
+          //   import { getHighlighter, bundledLanguages } from 'shikiji';
+          //   ^^^^^^
+          //   SyntaxError: Cannot use import statement outside a module
+          // md.use(await Shiki({
+          //   defaultColor: false,
+          //   themes: {
+          //     light: 'vitesse-light',
+          //     dark: 'vitesse-dark',
+          //   },
+          // }))
         },
       }),
 
@@ -156,12 +166,9 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
   ).concat(
     command === 'serve'
       ? ([
-        // https://github.com/antfu/vite-plugin-inspect
-        // Visit http://localhost:3333/__inspect/ to see the inspector
+          // https://github.com/antfu/vite-plugin-inspect
+          // Visit http://localhost:3333/__inspect/ to see the inspector
           Inspect(),
-
-          // https://github.com/webfansplz/vite-plugin-vue-devtools
-          VueDevTools(),
         ] as PluginOption[])
       : [],
   )
@@ -195,19 +202,26 @@ export default defineConfig(({ command }) => ({
   ].concat(
     command === 'serve'
       ? [
-        // Disabled for building the library for not generating sourcemap
-        // (Preview as unknown as { default: () => Plugin }).default(),
+          // https://github.com/webfansplz/vite-plugin-vue-devtools
+          VueDevTools(),
 
-          Pages({
-            extensions: ['vue', 'md'],
+          // Disabled for building the library for not generating sourcemap
+          // (Preview as unknown as { default: () => Plugin }).default(),
+          VueRouter({
+            extensions: ['.vue'],
+            exclude: ['**/components/*'],
+            dts: 'src/types/typed-router.d.ts',
           }),
 
           // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
           Layouts(),
         ]
       : [
-        // https://github.com/qmhc/vite-plugin-dts
+          // https://github.com/qmhc/vite-plugin-dts
           dts({
+            // TODO: Vite should use `tsconfig.build.json` as well when it supports configuring
+            // See: https://github.com/vitejs/vite/discussions/8483
+            tsconfigPath: 'tsconfig.build.json',
             outDir: 'dist/types',
             include: 'src',
           // rollupTypes: true,
@@ -224,9 +238,6 @@ export default defineConfig(({ command }) => ({
   test: {
     include: ['test/**/*.test.ts'],
     environment: 'jsdom',
-    deps: {
-      inline: ['@vue', '@vueuse', 'vue-demi'],
-    },
   },
 
   build: {
