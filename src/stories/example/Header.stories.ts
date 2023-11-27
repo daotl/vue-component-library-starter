@@ -9,7 +9,9 @@ const meta: Meta<typeof MyHeader> = {
 
 export default meta
 
-const Template: StoryObj<typeof MyHeader> = {
+type Story = StoryObj<typeof MyHeader>
+
+const Template: Story = {
   render: (args) => ({
   // Components used in your story `template` are defined in the `components` object
     components: { MyHeader },
@@ -24,13 +26,16 @@ const Template: StoryObj<typeof MyHeader> = {
   args: {},
 }
 
-/* eslint-disable ts/no-unsafe-member-access, ts/no-unsafe-call */
-export const LoggedIn = Template.bind({})
-LoggedIn.args = {
-  user: {},
+export const LoggedIn: Story = {
+  ...Template,
+  args: {
+    user: {},
+  },
 }
 
-export const LoggedOut = Template.bind({})
-LoggedOut.args = {
-  user: null,
+export const LoggedOut: Story = {
+  ...Template,
+  args: {
+    user: undefined,
+  },
 }

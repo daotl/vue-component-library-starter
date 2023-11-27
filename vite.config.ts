@@ -9,6 +9,8 @@ import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
 // Temporary disabled for error: `[vite] Internal server error: At least one <template> or <script> is required in a single file component.`
 // import VueMacros from 'unplugin-vue-macros'
 import {
@@ -18,7 +20,6 @@ import {
 } from 'vite'
 import dts from 'vite-plugin-dts'
 import Inspect from 'vite-plugin-inspect'
-import Pages from 'vite-plugin-pages'
 import { VitePWA } from 'vite-plugin-pwa'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -49,10 +50,14 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       //     }),
       //   },
       // }),
-      // https://github.com/hannoeru/vite-plugin-pages
-      Pages({
-        extensions: ['vue', 'md'],
+
+      // https://github.com/posva/unplugin-vue-router
+      VueRouter({
+        extensions: ['.vue'],
+        exclude: ['**/components/*'],
+        dts: 'src/types/typed-router.d.ts',
       }),
+
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
       // https://github.com/antfu/unplugin-auto-import
@@ -64,6 +69,11 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
           'vue/macros',
           '@vueuse/head',
           '@vueuse/core',
+          VueRouterAutoImports,
+          {
+            // add any other imports you were relying on
+            'vue-router/auto': ['useLink'],
+          },
         ],
         dts: 'src/types/auto-imports.d.ts',
         dirs: ['src/composables', 'src/stores'],
@@ -184,8 +194,10 @@ export default defineConfig(({ command }) => ({
 
           // Disabled for building the library for not generating sourcemap
           // (Preview as unknown as { default: () => Plugin }).default(),
-          Pages({
-            extensions: ['vue', 'md'],
+          VueRouter({
+            extensions: ['.vue'],
+            exclude: ['**/components/*'],
+            dts: 'src/types/typed-router.d.ts',
           }),
 
           // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -213,9 +225,6 @@ export default defineConfig(({ command }) => ({
   test: {
     include: ['test/**/*.test.ts'],
     environment: 'jsdom',
-    deps: {
-      inline: ['@vue', '@vueuse', 'vue-demi'],
-    },
   },
 
   build: {

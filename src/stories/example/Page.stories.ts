@@ -1,38 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import * as HeaderStories from './Header.stories'
 import MyPage from './Page.vue'
 
-export default {
+const meta: Meta<typeof MyPage> = {
   title: 'Example/Page',
   component: MyPage,
-} satisfies Meta
+}
 
-const Template: StoryObj<typeof MyPage> = {
+export default meta
+
+type Story = StoryObj<typeof MyPage>
+
+const Template: Story = {
   render: (args) => ({
     // Components used in your story `template` are defined in the `components` object
     components: { MyPage },
     // The story's `args` need to be mapped into the template through the `setup()` method
-
     setup() {
-      // Story args can be mapped to keys in the returned object
-      // eslint-disable-next-line ts/no-unsafe-member-access
-      return { user: args.user as Record<string, unknown> }
+      // Story args can be spread into the returned object
+      return { args }
     },
+    // Then, the spread values can be accessed directly in the template
+    template: '<my-Page :user="user" />',
   }),
+  args: {},
+}
+
+export const LoggedIn: Story = {
+  ...Template,
   args: {
     user: {},
   },
 }
 
-/* eslint-disable ts/no-unsafe-member-access, ts/no-unsafe-call */
-export const LoggedIn = Template.bind({})
-LoggedIn.args = {
-  // More on composing args: https://storybook.js.org/docs/vue/writing-stories/args#args-composition
-  ...HeaderStories.LoggedIn.args,
-}
-
-export const LoggedOut = Template.bind({})
-LoggedOut.args = {
-  ...HeaderStories.LoggedOut.args,
+export const LoggedOut: Story = {
+  ...Template,
+  args: {
+    user: undefined,
+  },
 }
