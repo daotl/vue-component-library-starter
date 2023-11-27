@@ -16,7 +16,6 @@
       "vitest",
       "vite/client",
       "vue/ref-macros",
-      "vite-plugin-pages/client",
       "vite-plugin-vue-layouts/client",
       "vite-plugin-pwa/client",
       "element-plus/global",
@@ -34,7 +33,7 @@
   "vueCompilerOptions": {
     "plugins": [
       "@vue-macros/volar/define-models",
-      "@vue-macros/volar/define-slots"
+      "@vue-macros/volar/define-props-refs"
     ]
   },
   "exclude": ["dist", "node_modules", "cypress"]
