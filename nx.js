@@ -127,7 +127,7 @@ const config = {
       executor: 'nx:run-commands',
       options: {
         command:
-          'FIX={args.fix}; echo stylelint "src/**/*.{css,scss,vue,tsx}" --fix=${FIX:-false}',
+          'FIX={args.fix}; stylelint "src/**/*.{css,scss,vue,tsx}" --fix=${FIX:-false}',
       },
     },
 
