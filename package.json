@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@8.11.0",
   "scripts": {
-    "build:ssg": "vite-ssg build",
+    "build:ssg": "nx exec -- vite-ssg build",
     "test:e2e": "cypress open",
     "typecheck": "vue-tsc --noEmit",
     "up": "taze major -I",
