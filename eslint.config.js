@@ -4,20 +4,10 @@ export default config({
   unocss: true,
 }, {
   ignores: ['cypress', '.nx', 'nx.json', '**/*.md', 'tsconfig.*'],
-},
-  {
-    languageOptions: {
-      parserOptions: {
-        project: ['tsconfig.build.json'],
-      }
-    }
+}, {
+  languageOptions: {
+    parserOptions: {
+      project: ['tsconfig.all.json'],
+    },
   },
-  {
-    files: ["**/*.spec.ts"],
-    languageOptions: {
-      parserOptions: {
-        project: ['tsconfig.spec.json'],
-      }
-    }
-  },
-)
+})

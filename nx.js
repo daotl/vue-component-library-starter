@@ -119,7 +119,7 @@ const config = {
       cache: true,
       executor: 'nx:run-commands',
       options: {
-        command: 'FIX={args.fix}; eslint src --fix=${FIX:-false}',
+        command: 'FIX={args.fix}; eslint . --fix=${FIX:-false}',
       },
     },
     stylelint: {

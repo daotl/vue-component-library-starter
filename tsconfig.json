@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
-  "files": [],
-  "include": [],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx","**/*.vue"],
   "references": [
     {
       "path": "./tsconfig.build.json"
