@@ -1,8 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "declaration": true
-  },
   "include": [".*.cjs", "**/*.ts", "**/*.cts", "**/*.tsx", "**/*.js", "**/*.cjs", "**/*.jsx", "**/*.vue"],
   "exclude": [
     "src/**/*",
