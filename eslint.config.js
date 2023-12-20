@@ -3,7 +3,6 @@ import { fileURLToPath } from 'node:url'
 
 import config from '@daotl/eslint-config'
 import { FlatCompat } from '@eslint/eslintrc'
-import unocss from '@unocss/eslint-plugin'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -12,13 +11,20 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 })
 
-export default [
+export default config(
   {
-    ignores: ['cypress', 'storybook-static'],
+    unocss: true,
   },
-  ...config(),
-  unocss.configs.flat,
-
+  {
+    ignores: ['cypress', 'storybook-static', '.nx', 'nx.json', '**/*.md', 'tsconfig.*'],
+  },
+  {
+    languageOptions: {
+      parserOptions: {
+        project: ['tsconfig.eslint.json'],
+      },
+    },
+  },
   // Storybook
   ...compat.extends('plugin:storybook/recommended'),
   {
@@ -27,4 +33,4 @@ export default [
       'ts/no-unsafe-assignment': 'off',
     },
   },
-]
+)

@@ -51,7 +51,6 @@ And you will see the generated file in `dist` that ready to be served.
 
 <br>
 
-
 ## Features
 
 - ⚡️ [Vue 3](https://github.com/vuejs/core), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
@@ -91,7 +90,6 @@ And you will see the generated file in `dist` that ready to be served.
 - ☁️ Deploy on Netlify, zero-config
 
 <br>
-
 
 ## Pre-packed
 

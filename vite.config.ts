@@ -53,7 +53,7 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
 
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
-        extensions: ['.vue'],
+        extensions: ['.vue', '.md'],
         exclude: ['**/components/*'],
         dts: 'src/types/typed-router.d.ts',
       }),
