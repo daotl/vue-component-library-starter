@@ -7,7 +7,7 @@ export default config({
 }, {
   languageOptions: {
     parserOptions: {
-      project: ['tsconfig.all.json'],
+      project: ['tsconfig.eslint.json'],
     },
   },
 })
