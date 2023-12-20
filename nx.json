@@ -48,33 +48,25 @@
     },
     "serve": {
       "executor": "@nx/vite:dev-server",
-      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "dist:build"
+        "buildTarget": "vitesse:build"
       },
+      "hmr": true,
       "configurations": {
-        "development": {
-          "buildTarget": "dist:build:development",
-          "hmr": true
-        },
         "production": {
-          "buildTarget": "dist:build:production",
+          "buildTarget": "vitesse:build:production",
           "hmr": false
         }
       }
     },
     "preview": {
       "executor": "@nx/vite:preview-server",
-      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "dist:build"
+        "buildTarget": "vitesse:build"
       },
       "configurations": {
-        "development": {
-          "buildTarget": "dist:build:development"
-        },
         "production": {
-          "buildTarget": "dist:build:production"
+          "buildTarget": "vitesse:build:production"
         }
       }
     },

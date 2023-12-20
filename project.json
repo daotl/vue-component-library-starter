@@ -4,6 +4,8 @@
   "sourceRoot": ".",
   "targets": {
     "build": {},
+    "serve": {},
+    "preview": {},
     "test": {
       "options": {
         "reportsDirectory": "../coverage"

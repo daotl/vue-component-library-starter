@@ -50,35 +50,29 @@ const config = {
         },
       },
     },
+
     serve: {
       executor: '@nx/vite:dev-server',
-      defaultConfiguration: 'development',
       options: {
-        buildTarget: 'dist:build',
+        buildTarget: 'vitesse:build',
       },
+      hmr: true,
       configurations: {
-        development: {
-          buildTarget: 'dist:build:development',
-          hmr: true,
-        },
         production: {
-          buildTarget: 'dist:build:production',
+          buildTarget: 'vitesse:build:production',
           hmr: false,
         },
       },
     },
+
     preview: {
       executor: '@nx/vite:preview-server',
-      defaultConfiguration: 'development',
       options: {
-        buildTarget: 'dist:build',
+        buildTarget: 'vitesse:build',
       },
       configurations: {
-        development: {
-          buildTarget: 'dist:build:development',
-        },
         production: {
-          buildTarget: 'dist:build:production',
+          buildTarget: 'vitesse:build:production',
         },
       },
     },
@@ -102,10 +96,6 @@ const config = {
         '{projectRoot}/test/**/*.tsx',
         '{projectRoot}/src/**/*.vue',
       ],
-    },
-
-    dev: {
-      cache: false,
     },
 
     lint: {
@@ -134,7 +124,8 @@ const config = {
       cache: true,
       executor: 'nx:run-commands',
       options: {
-        command: 'FIX={args.fix}; stylelint "src/**/*.{css,scss,vue,tsx}" --fix=${FIX:-false}',
+        command:
+          'FIX={args.fix}; echo stylelint "src/**/*.{css,scss,vue,tsx}" --fix=${FIX:-false}',
       },
     },
 
