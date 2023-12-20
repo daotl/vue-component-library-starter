@@ -55,6 +55,7 @@ const config = {
       executor: '@nx/vite:dev-server',
       options: {
         buildTarget: 'vitesse:build',
+        port: 3333,
       },
       hmr: true,
       configurations: {
@@ -69,6 +70,7 @@ const config = {
       executor: '@nx/vite:preview-server',
       options: {
         buildTarget: 'vitesse:build',
+        port: 3333,
       },
       configurations: {
         production: {

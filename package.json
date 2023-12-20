@@ -4,13 +4,8 @@
   "private": true,
   "packageManager": "pnpm@8.11.0",
   "scripts": {
-    "build": "vite-ssg build",
-    "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
-    "preview": "vite preview",
-    "preview-https": "serve dist",
-    "test": "vitest",
+    "build:ssg": "vite-ssg build",
     "test:e2e": "cypress open",
-    "test:unit": "vitest",
     "typecheck": "vue-tsc --noEmit",
     "up": "taze major -I",
     "sizecheck": "npx vite-bundle-visualizer"

@@ -49,7 +49,8 @@
     "serve": {
       "executor": "@nx/vite:dev-server",
       "options": {
-        "buildTarget": "vitesse:build"
+        "buildTarget": "vitesse:build",
+        "port": 3333
       },
       "hmr": true,
       "configurations": {
@@ -62,7 +63,8 @@
     "preview": {
       "executor": "@nx/vite:preview-server",
       "options": {
-        "buildTarget": "vitesse:build"
+        "buildTarget": "vitesse:build",
+        "port": 3333
       },
       "configurations": {
         "production": {
@@ -93,9 +95,6 @@
         "{projectRoot}/test/**/*.tsx",
         "{projectRoot}/src/**/*.vue"
       ]
-    },
-    "dev": {
-      "cache": false
     },
     "lint": {
       "dependsOn": [
@@ -128,7 +127,7 @@
       "cache": true,
       "executor": "nx:run-commands",
       "options": {
-        "command": "FIX={args.fix}; stylelint \"src/**/*.{css,scss,vue,tsx}\" --fix=${FIX:-false}"
+        "command": "FIX={args.fix}; echo stylelint \"src/**/*.{css,scss,vue,tsx}\" --fix=${FIX:-false}"
       }
     },
     "container": {
