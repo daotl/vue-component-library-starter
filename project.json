@@ -13,7 +13,20 @@
     },
     "lint": {},
     "eslint": {},
-    "stylelint": {}
+    "stylelint": {},
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4173,
+        "docsMode": true,
+        "configDir": "./.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
   },
   "tags": []
 }
