@@ -1,5 +1,5 @@
 {
-  "name": "vitesse",
+  "name": "root",
   "$schema": "./node_modules/nx/schemas/project-schema.json",
   "sourceRoot": ".",
   "targets": {
@@ -25,6 +25,14 @@
         "ci": {
           "quiet": true
         }
+      }
+    },
+    "storybook:build": {
+      "cache": true,
+      "inputs": [],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "storybook build"
       }
     }
   },

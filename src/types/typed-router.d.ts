@@ -41,7 +41,9 @@ declare module 'vue-router/auto/routes' {
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
+    '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
     '/hi/[name]': RouteRecordInfo<'/hi/[name]', '/hi/:name', { name: ParamValue<true> }, { name: ParamValue<false> }>,
+    '/README': RouteRecordInfo<'/README', '/README', Record<never, never>, Record<never, never>>,
   }
 }
 
@@ -134,14 +136,6 @@ declare module 'vue-router' {
   export interface TypesConfig {
     beforeRouteUpdate: NavigationGuard<RouteNamedMap>
     beforeRouteLeave: NavigationGuard<RouteNamedMap>
-
-    $route: RouteLocationNormalizedLoadedTypedList<RouteNamedMap>[keyof RouteNamedMap]
-    $router: _RouterTyped<RouteNamedMap>
-
-    RouterLink: RouterLinkTyped<RouteNamedMap>
-  }
-}
-NamedMap>
 
     $route: RouteLocationNormalizedLoadedTypedList<RouteNamedMap>[keyof RouteNamedMap]
     $router: _RouterTyped<RouteNamedMap>
