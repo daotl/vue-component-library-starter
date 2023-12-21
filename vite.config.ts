@@ -64,7 +64,6 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
       AutoImport({
         imports: [
           'vue',
-          'vue-router',
           'vue-i18n',
           'vue/macros',
           '@vueuse/head',

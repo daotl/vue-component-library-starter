@@ -25,11 +25,10 @@
     "src"
   ],
   "scripts": {
-    "build:demo": "vite-ssg build",
+    "build-demo": "vite-ssg build",
     "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
     "pub": "npm run lint && npm run build && npm publish --access public",
     "preview-https": "serve dist",
-    "build:ssg": "vite-ssg build",
     "test:e2e": "cypress open",
     "typecheck": "vue-tsc --noEmit",
     "up": "taze major -I",

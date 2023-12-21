@@ -25,6 +25,14 @@ const config = {
   },
   targetDefaults: {
     build: {
+      dependsOn: ['build-vite'],
+      cache: true,
+      executor: 'nx:run-commands',
+      options: {
+        command: 'gcp \'./dist/types/**/*.d.ts\' {p}{n}.cts',
+      },
+    },
+    'build-vite': {
       dependsOn: ['^build'],
       cache: true,
       executor: '@nx/vite:build',
@@ -54,13 +62,13 @@ const config = {
     serve: {
       executor: '@nx/vite:dev-server',
       options: {
-        buildTarget: 'vitesse:build',
+        buildTarget: 'root:build-vite',
         port: 3333,
       },
       hmr: true,
       configurations: {
         production: {
-          buildTarget: 'vitesse:build:production',
+          buildTarget: 'root:build-demo:production',
           hmr: false,
         },
       },
@@ -69,12 +77,12 @@ const config = {
     preview: {
       executor: '@nx/vite:preview-server',
       options: {
-        buildTarget: 'vitesse:build',
+        buildTarget: 'root:build-demo',
         port: 3333,
       },
       configurations: {
         production: {
-          buildTarget: 'vitesse:build:production',
+          buildTarget: 'root:build-demo:production',
         },
       },
     },
