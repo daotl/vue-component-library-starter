@@ -24,7 +24,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm run lint
+        run: pnpm nx affected -t lint -c ci --parallel 20 --batch
 
   typecheck:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
-      - run: pnpm run test:unit
+      - run: pnpm nx affected -t test -c ci --parallel 20 --batch
 
   test-e2e:
     runs-on: ubuntu-latest
@@ -92,5 +92,5 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           install-command: echo
-          build: pnpm run build
+          build: pnpm nx affected -t build -c ci --parallel 20 --batch
           start: npx vite preview --port 3333
