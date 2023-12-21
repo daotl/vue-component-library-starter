@@ -24,7 +24,7 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm nx -t lint
+        run: pnpm nx lint
 
   typecheck:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install
-      - run: pnpm nx -t test
+      - run: pnpm nx test
 
   test-e2e:
     runs-on: ubuntu-latest
@@ -92,5 +92,5 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           install-command: echo
-          build: pnpm nx -t build
+          build: pnpm nx build
           start: npx vite preview --port 3333
