@@ -3,7 +3,7 @@ import config from '@daotl/eslint-config'
 export default config({
   unocss: true,
 }, {
-  ignores: ['cypress', '.nx', 'nx.json', '**/*.md', 'tsconfig.*'],
+  ignores: ['cypress', '.nx', '**/*.md', 'tsconfig.*'],
 }, {
   languageOptions: {
     parserOptions: {
