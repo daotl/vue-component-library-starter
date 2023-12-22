@@ -13,7 +13,8 @@
     },
     "lint": {},
     "eslint": {},
-    "stylelint": {}
+    "stylelint": {},
+    "typecheck": {}
   },
   "tags": []
 }

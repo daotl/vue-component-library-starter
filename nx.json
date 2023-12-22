@@ -130,6 +130,13 @@
         "command": "FIX={args.fix}; stylelint \"src/**/*.{css,scss,vue,tsx}\" --fix=${FIX:-false}"
       }
     },
+    "typecheck": {
+      "cache": true,
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vue-tsc --noEmit"
+      }
+    },
     "container": {
       "dependsOn": [
         "build"
