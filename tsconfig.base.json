@@ -18,6 +18,7 @@
       "vue/ref-macros",
       "vite-plugin-vue-layouts/client",
       "vite-plugin-pwa/client",
+      "element-plus/global",
       "unplugin-vue-macros/macros-global"
     ],
     "allowJs": true,

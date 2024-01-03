@@ -310,13 +310,6 @@ declare global {
 import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
-    readonly $$: UnwrapRef<typeof import('vue/macros')['$$']>
-    readonly $: UnwrapRef<typeof import('vue/macros')['$']>
-    readonly $computed: UnwrapRef<typeof import('vue/macros')['$computed']>
-    readonly $customRef: UnwrapRef<typeof import('vue/macros')['$customRef']>
-    readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
-    readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
-    readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -608,13 +601,6 @@ declare module 'vue' {
 }
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    readonly $$: UnwrapRef<typeof import('vue/macros')['$$']>
-    readonly $: UnwrapRef<typeof import('vue/macros')['$']>
-    readonly $computed: UnwrapRef<typeof import('vue/macros')['$computed']>
-    readonly $customRef: UnwrapRef<typeof import('vue/macros')['$customRef']>
-    readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
-    readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
-    readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -891,6 +877,20 @@ declare module '@vue/runtime-core' {
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
     readonly watchDebounced: UnwrapRef<typeof import('@vueuse/core')['watchDebounced']>
     readonly watchDeep: UnwrapRef<typeof import('@vueuse/core')['watchDeep']>
+    readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
+    readonly watchIgnorable: UnwrapRef<typeof import('@vueuse/core')['watchIgnorable']>
+    readonly watchImmediate: UnwrapRef<typeof import('@vueuse/core')['watchImmediate']>
+    readonly watchOnce: UnwrapRef<typeof import('@vueuse/core')['watchOnce']>
+    readonly watchPausable: UnwrapRef<typeof import('@vueuse/core')['watchPausable']>
+    readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
+    readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
+    readonly watchThrottled: UnwrapRef<typeof import('@vueuse/core')['watchThrottled']>
+    readonly watchTriggerable: UnwrapRef<typeof import('@vueuse/core')['watchTriggerable']>
+    readonly watchWithFilter: UnwrapRef<typeof import('@vueuse/core')['watchWithFilter']>
+    readonly whenever: UnwrapRef<typeof import('@vueuse/core')['whenever']>
+  }
+}
+p: UnwrapRef<typeof import('@vueuse/core')['watchDeep']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchIgnorable: UnwrapRef<typeof import('@vueuse/core')['watchIgnorable']>
     readonly watchImmediate: UnwrapRef<typeof import('@vueuse/core')['watchImmediate']>

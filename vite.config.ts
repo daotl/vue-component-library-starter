@@ -3,13 +3,13 @@ import path from 'node:path'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
-// import Shiki from 'markdown-it-shikiji'
+import Shiki from 'markdown-it-shikiji'
 import Unocss from 'unocss/vite'
 // g pug push
 import AutoImport from 'unplugin-auto-import/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 // Cannot use this for UI libraries, or code of element-plus components will be included in the build output
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
@@ -59,6 +59,74 @@ export function commonPlugins(command: 'build' | 'serve'): PluginOption[] {
         extensions: ['.vue', '.md'],
         exclude: ['**/components/*'],
         dts: 'src/types/typed-router.d.ts',
+      }),
+
+      // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+      Layouts(),
+
+      // https://github.com/antfu/unplugin-auto-import
+      AutoImport({
+        imports: [
+          'vue',
+          'vue-i18n',
+          '@vueuse/head',
+          '@vueuse/core',
+          VueRouterAutoImports,
+          {
+          // add any other imports you were relying on
+            'vue-router/auto': ['useLink'],
+          },
+        ],
+        // auto import Element Plus functions
+        resolvers: [ElementPlusResolver()],
+        dts: 'src/types/auto-imports.d.ts',
+        dirs: ['src/composables', 'src/stores'],
+        vueTemplate: true,
+      }),
+
+      // https://github.com/antfu/unplugin-vue-components
+      Components({
+      // allow auto load markdown components under `./src/components/`
+        extensions: ['vue', 'md'],
+        // allow auto import and register components used in markdown
+        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+        // custom resolvers
+        resolvers: [
+        // auto import Element Plus components with styles
+          ElementPlusResolver(),
+        ],
+        dts: 'src/types/components.d.ts',
+      }),
+
+      // https://github.com/element-plus/unplugin-element-plus/
+
+      ElementPlus({}),
+
+      // https://github.com/unocss/unocss
+      // see uno.config.ts for config
+      Unocss(),
+
+      // https://github.com/unplugin/unplugin-vue-markdown
+      // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
+      Markdown({
+        wrapperClasses: 'prose prose-sm m-auto text-left',
+        headEnabled: true,
+        async markdownItSetup(md) {
+          md.use(LinkAttributes, {
+            matcher: (link: string) => /^https?:\/\//.test(link),
+            attrs: {
+              target: '_blank',
+              rel: 'noopener',
+            },
+          })
+          md.use(await Shiki({
+            defaultColor: false,
+            themes: {
+              light: 'vitesse-light',
+              dark: 'vitesse-dark',
+            },
+          }))
+        },
       }),
 
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
