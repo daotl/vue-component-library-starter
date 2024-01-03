@@ -43,7 +43,7 @@ export default defineConfig({
 
     // https://github.com/posva/unplugin-vue-router
     VueRouter({
-      extensions: ['.vue'],
+      extensions: ['.vue', '.md'],
       exclude: ['**/components/*'],
       dts: 'src/types/typed-router.d.ts',
     }),
@@ -87,7 +87,7 @@ export default defineConfig({
 
     // https://github.com/element-plus/unplugin-element-plus/
 
-    ElementPlus(),
+    ElementPlus({}),
 
     // https://github.com/unocss/unocss
     // see uno.config.ts for config

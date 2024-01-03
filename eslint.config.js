@@ -1,10 +1,14 @@
 import config from '@daotl/eslint-config'
-import unocss from '@unocss/eslint-plugin'
 
-export default [
-  {
-    ignores: ['cypress'],
+export default config({
+  unocss: true,
+}, {
+  ignores: ['cypress', '.nx', '**/*.md', 'tsconfig.*'],
+}, {
+  languageOptions: {
+    parserOptions: {
+      project: ['tsconfig.eslint.json'],
+      extraFileExtensions: ['.vue'],
+    },
   },
-  ...config(),
-  unocss.configs.flat,
-]
+})
