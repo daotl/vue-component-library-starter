@@ -1,0 +1,19 @@
+{
+  "name": "vitesse",
+  "$schema": "./node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": ".",
+  "targets": {
+    "build": {},
+    "serve": {},
+    "preview": {},
+    "test": {
+      "options": {
+        "reportsDirectory": "../coverage"
+      }
+    },
+    "lint": {},
+    "eslint": {},
+    "stylelint": {}
+  },
+  "tags": []
+}

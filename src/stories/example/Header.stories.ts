@@ -12,7 +12,7 @@ export default meta
 type Story = StoryObj<typeof MyHeader>
 
 const Template: Story = {
-  render: (args) => ({
+  render: args => ({
   // Components used in your story `template` are defined in the `components` object
     components: { MyHeader },
     // The story's `args` need to be mapped into the template through the `setup()` method
