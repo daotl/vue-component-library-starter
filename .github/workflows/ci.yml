@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+      - element-plus
 
   pull_request:
     branches:
       - main
+      - element-plus
 
 jobs:
   build:
