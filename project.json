@@ -4,6 +4,7 @@
   "sourceRoot": ".",
   "targets": {
     "build": {},
+    "build-vite": {},
     "serve": {},
     "preview": {},
     "test": {
