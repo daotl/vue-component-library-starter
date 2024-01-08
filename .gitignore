@@ -11,3 +11,4 @@ node_modules
 .eslintcache
 storybook-static
 cypress/downloads
+tsconfig.tsbuildinfo

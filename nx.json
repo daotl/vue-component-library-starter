@@ -59,13 +59,13 @@
     "serve": {
       "executor": "@nx/vite:dev-server",
       "options": {
-        "buildTarget": "vitesse:build",
+        "buildTarget": "root:build-vite",
         "port": 3333
       },
       "hmr": true,
       "configurations": {
         "production": {
-          "buildTarget": "vitesse:build:production",
+          "buildTarget": "root:build-vite:production",
           "hmr": false
         }
       }
@@ -73,12 +73,12 @@
     "preview": {
       "executor": "@nx/vite:preview-server",
       "options": {
-        "buildTarget": "vitesse:build",
+        "buildTarget": "root:build-vite",
         "port": 3333
       },
       "configurations": {
         "production": {
-          "buildTarget": "vitesse:build:production"
+          "buildTarget": "root:build-vite:production"
         }
       }
     },

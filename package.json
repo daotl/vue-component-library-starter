@@ -25,13 +25,10 @@
     "src"
   ],
   "scripts": {
-    "storybook": "storybook dev",
-    "storybook:build": "storybook build",
-    "build:demo": "vite-ssg build",
+    "build:ssg": "nx exec -- vite-ssg build",
     "dev": "dotenv -e .env.dev -- vite --port 3333 --open",
     "pub": "npm run lint && npm run build && npm publish --access public",
     "preview-https": "serve dist",
-    "build:ssg": "nx exec -- vite-ssg build",
     "test:e2e": "cypress open",
     "up": "taze major -I",
     "sizecheck": "npx vite-bundle-visualizer"
@@ -57,7 +54,8 @@
     "@iconify-json/carbon": "^1.1.24",
     "@intlify/unplugin-vue-i18n": "^1.5.0",
     "@mdx-js/react": "^2.3.0",
-    "@nx/vite": "^17.1.3",
+    "@nx/storybook": "17.1.3",
+    "@nx/vite": "17.1.3",
     "@storybook/addon-actions": "7.5.1",
     "@storybook/addon-essentials": "7.5.1",
     "@storybook/addon-links": "7.5.1",
