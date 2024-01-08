@@ -15,6 +15,7 @@
     "lint": {},
     "eslint": {},
     "stylelint": {},
+    "typecheck": {},
     "storybook": {
       "executor": "@nx/storybook:storybook",
       "options": {
