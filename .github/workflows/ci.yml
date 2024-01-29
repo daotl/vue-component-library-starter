@@ -23,8 +23,8 @@ jobs:
       - name: Install
         run: pnpm install
 
-      - name: Lint
-        run: pnpm nx run-many --targets=build,lint,test,typecheck
+      - name: Nx
+        run: pnpm nx run-many --targets=build,lint,test,typecheck -c ci --parallel 20 --batch
 
   test-e2e:
     runs-on: ubuntu-latest
