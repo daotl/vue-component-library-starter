@@ -1,6 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+// @ts-check
 import config from '@daotl/eslint-config'
 import { FlatCompat } from '@eslint/eslintrc'
 
