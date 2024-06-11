@@ -9,7 +9,7 @@
     "preview": {},
     "test": {
       "options": {
-        "reportsDirectory": "../coverage"
+        "coverage.reportsDirectory": "./coverage"
       }
     },
     "lint": {},

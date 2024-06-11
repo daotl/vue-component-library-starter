@@ -1,6 +1,7 @@
 import path from 'node:path'
 
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
+// import Shiki from '@shikijs/markdown-it'
 import Vue from '@vitejs/plugin-vue'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shikiji'
@@ -233,6 +234,9 @@ export default defineConfig(({ command }) => ({
   test: {
     include: ['test/**/*.test.ts'],
     environment: 'jsdom',
+    coverage: {
+      enabled: true,
+    },
   },
 
   build: {
