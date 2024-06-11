@@ -4,8 +4,7 @@ import './styles/app.css'
 
 import { setupLayouts } from 'virtual:generated-layouts'
 import { ViteSSG } from 'vite-ssg'
-// import Previewer from 'virtual:vue-component-preview'
-import { routes } from 'vue-router/auto/routes'
+import { routes } from 'vue-router/auto-routes'
 
 import App from './App.vue'
 import type { UserModule } from './types.js'

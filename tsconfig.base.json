@@ -19,7 +19,8 @@
       "vite-plugin-vue-layouts/client",
       "vite-plugin-pwa/client",
       "element-plus/global",
-      "unplugin-vue-macros/macros-global"
+      "unplugin-vue-macros/macros-global",
+      "unplugin-vue-router/client"
     ],
     "allowJs": true,
     "strict": true,
@@ -36,5 +37,5 @@
       "@vue-macros/volar/define-props-refs"
     ]
   },
-  "exclude": ["dist", "node_modules", "cypress"]
+  "exclude": ["dist", "node_modules", "cypress"],
 }
