@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0-alpha.0",
   "private": true,
-  "packageManager": "pnpm@9.2.0",
+  "packageManager": "pnpm@8.11.0",
   "exports": {
     ".": {
       "import": {
@@ -91,7 +91,7 @@
     "lefthook": "^1.6.15",
     "markdown-it-link-attributes": "^4.0.1",
     "nx": "18.3.1",
-    "pnpm": "^9.2.0",
+    "pnpm": "^8.11.0",
     "postcss": "^8.4.38",
     "postcss-html": "^1.7.0",
     "postcss-styled-syntax": "^0.6.4",
