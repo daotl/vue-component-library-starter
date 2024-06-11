@@ -190,8 +190,8 @@ devDependencies:
     specifier: 18.3.1
     version: 18.3.1
   pnpm:
-    specifier: ^9.2.0
-    version: 9.2.0
+    specifier: ^8.11.0
+    version: 8.15.8
   postcss:
     specifier: ^8.4.38
     version: 8.4.38
@@ -13013,9 +13013,9 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm@9.2.0:
-    resolution: {integrity: sha512-mKgP0RwucJZ0d2IwQQZDKz3cZ9z1S1qMAck/aKLNXgXmghhJUioG+3YoTUGiZg1eM08u47vykYO/LnObHa+ncQ==}
-    engines: {node: '>=18.12'}
+  /pnpm@8.15.8:
+    resolution: {integrity: sha512-0aAp4aRHrZC8ls1YsPrUhtKZPVMYVjlve6vy2D6xgju4PFo9D8GPZ1stEDIdSesWH+zjb+gTSqWCPs0hX+7Tkg==}
+    engines: {node: '>=16.14'}
     hasBin: true
     dev: true
 
