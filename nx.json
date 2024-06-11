@@ -148,11 +148,16 @@
       }
     },
     "container": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "cache": true,
       "options": {
         "load": true,
-        "platforms": ["linux/amd64", "linux/arm64"]
+        "platforms": [
+          "linux/amd64",
+          "linux/arm64"
+        ]
       },
       "configurations": {
         "ci": {
@@ -162,7 +167,11 @@
       }
     },
     "deploy": {
-      "dependsOn": ["build", "test", "lint"],
+      "dependsOn": [
+        "build",
+        "test",
+        "lint"
+      ],
       "cache": false
     }
   },
