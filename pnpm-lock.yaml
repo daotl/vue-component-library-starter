@@ -189,9 +189,6 @@ devDependencies:
   nx:
     specifier: 18.3.1
     version: 18.3.1
-  pnpm:
-    specifier: ^8.11.0
-    version: 8.15.8
   postcss:
     specifier: ^8.4.38
     version: 8.4.38
@@ -13011,12 +13008,6 @@ packages:
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
-    dev: true
-
-  /pnpm@8.15.8:
-    resolution: {integrity: sha512-0aAp4aRHrZC8ls1YsPrUhtKZPVMYVjlve6vy2D6xgju4PFo9D8GPZ1stEDIdSesWH+zjb+gTSqWCPs0hX+7Tkg==}
-    engines: {node: '>=16.14'}
-    hasBin: true
     dev: true
 
   /polished@4.3.1:
