@@ -11,4 +11,6 @@ node_modules
 .eslintcache
 storybook-static
 cypress/downloads
+public/assets/fonts
+.github
 tsconfig.tsbuildinfo

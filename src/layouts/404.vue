@@ -10,9 +10,9 @@ const { t } = useI18n()
     </div>
     <RouterView />
     <div>
-      <button text-sm btn m="3 t8" @click="router.back()">
+      <el-button @click="router.back()">
         {{ t('button.back') }}
-      </button>
+      </el-button>
     </div>
   </main>
 </template>

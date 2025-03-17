@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import config from '@daotl/eslint-config'
+import { config } from '@daotl/eslint-config'
 import { FlatCompat } from '@eslint/eslintrc'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -23,6 +23,11 @@ export default config(
       parserOptions: {
         project: ['tsconfig.eslint.json'],
       },
+    },
+  },
+  {
+    rules: {
+      'unicorn/no-abusive-eslint-disable': 'off',
     },
   },
   // Storybook

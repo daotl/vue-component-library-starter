@@ -16,30 +16,6 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "build-vite"
-      ],
-      "cache": true,
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "gcp './dist/types/**/*.d.ts' {p}{n}.cts"
-      }
-    },
-    "build-vite": {
-      "dependsOn": [
-        "^build"
-      ],
-      "cache": true,
-      "executor": "@nx/vite:build",
-      "inputs": [
-        "default"
-      ],
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "outputPath": "{projectRoot}/dist"
-      },
       "configurations": {
         "ci": {
           "options": {
@@ -57,40 +33,18 @@
       }
     },
     "serve": {
-      "executor": "@nx/vite:dev-server",
       "options": {
-        "buildTarget": "root:build-vite",
         "port": 3333
-      },
-      "hmr": true,
-      "configurations": {
-        "production": {
-          "buildTarget": "root:build-vite:production",
-          "hmr": false
-        }
       }
     },
     "preview": {
-      "executor": "@nx/vite:preview-server",
       "options": {
-        "buildTarget": "root:build-vite",
         "port": 3333
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "root:build-vite:production"
-        }
       }
     },
     "test": {
-      "dependsOn": [
-        "build"
-      ],
-      "cache": true,
-      "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "dependsOn": ["build"],
+      "outputs": ["{options.coverage.reportsDirectory}"],
       "options": {
         "passWithNoTests": true
       },
@@ -109,12 +63,10 @@
     "lint": {
       "dependsOn": [
         {
-          "project": "self",
           "target": "eslint",
           "params": "forward"
         },
         {
-          "project": "self",
           "target": "stylelint",
           "params": "forward"
         }
@@ -124,13 +76,6 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "echo lint done, args:"
-      }
-    },
-    "eslint": {
-      "cache": true,
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "FIX={args.fix}; eslint . --fix=${FIX:-false}"
       }
     },
     "stylelint": {
@@ -148,16 +93,11 @@
       }
     },
     "container": {
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "cache": true,
       "options": {
         "load": true,
-        "platforms": [
-          "linux/amd64",
-          "linux/arm64"
-        ]
+        "platforms": ["linux/amd64", "linux/arm64"]
       },
       "configurations": {
         "ci": {
@@ -167,12 +107,35 @@
       }
     },
     "deploy": {
-      "dependsOn": [
-        "build",
-        "test",
-        "lint"
-      ],
+      "dependsOn": ["build", "test", "lint"],
       "cache": false
     }
-  }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "eslint"
+      }
+    },
+    {
+      "plugin": "@nx/storybook/plugin",
+      "options": {
+        "buildStorybookTargetName": "build-storybook",
+        "serveStorybookTargetName": "storybook",
+        "testStorybookTargetName": "test-storybook",
+        "staticStorybookTargetName": "static-storybook"
+      }
+    }
+  ]
 }

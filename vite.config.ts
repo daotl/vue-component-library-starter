@@ -25,6 +25,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import generateSitemap from 'vite-ssg-sitemap'
+import 'vitest/config'
 
 // Common config for both library and Storybook
 export const commonConfig: UserConfig = {
@@ -224,6 +225,9 @@ export default defineConfig(({ command }) => ({
   test: {
     include: ['test/**/*.test.ts'],
     environment: 'jsdom',
+    coverage: {
+      enabled: true,
+    },
   },
 
   build: {
@@ -300,7 +304,7 @@ export default defineConfig(({ command }) => ({
   ssgOptions: {
     script: 'async',
     formatting: 'minify',
-    crittersOptions: {
+    beastiesOptions: {
       reduceInlineStyles: false,
     },
     onFinished() {

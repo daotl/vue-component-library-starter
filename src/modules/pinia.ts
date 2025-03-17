@@ -1,6 +1,5 @@
-import { createPinia, type StateTree } from 'pinia'
-
 import type { UserModule } from '~/types'
+import { createPinia } from 'pinia'
 
 // Setup Pinia
 // https://pinia.vuejs.org/
